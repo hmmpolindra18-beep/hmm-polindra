@@ -274,5 +274,36 @@
         <p class="text-xs mt-1 text-slate-600">Built with Solidaritas ⚙️ | Politeknik Negeri Indramayu</p>
     </footer>
 
+    <!-- KOTAK NOTIFIKASI (Toast) -->
+    <div id="toastNotif" class="fixed bottom-5 right-5 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_5px_20px_rgba(59,130,246,0.5)] p-4 transform translate-y-full opacity-0 transition-all duration-500 z-[100] flex items-start">
+        <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse"></i>
+        <div class="flex-1">
+            <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
+            <p class="text-xs text-slate-400 mt-1">Jangan lupa cek Galeri Proker buat liat foto keseruan Osprod kemarin ya!</p>
+        </div>
+        <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- SCRIPT BUAT MUNCULIN NOTIFIKASI -->
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('toastNotif');
+            toast.classList.remove('translate-y-full', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+        }, 2000);
+
+        function tutupNotif() {
+            const toast = document.getElementById('toastNotif');
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-full', 'opacity-0');
+        }
+
+        setTimeout(() => {
+            tutupNotif();
+        }, 8000);
+    </script>
+
 </body>
 </html>
