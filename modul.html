@@ -6,9 +6,7 @@
     <title>Modul & Tutorial - HMM POLINDRA</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome buat Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -22,14 +20,17 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        @keyframes pageSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-transition { animation: pageSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between">
+<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-transition">
 
     <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110] transition-all duration-300">
+    <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center gap-3">
@@ -41,7 +42,6 @@
                         <p class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">HMM POLINDRA</p>
                     </div>
                 </div>
-                
                 <div>
                     <a href="index.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
@@ -53,20 +53,18 @@
 
     <!-- CONTENT -->
     <main class="max-w-5xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
-        <div class="text-center mb-14 reveal active">
+        <div class="text-center mb-14">
             <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">Academic Hub</span>
             <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Pusat Modul & Tutorial</h2>
             <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Kumpulan modul praktikum, elemen mesin, serta video tutorial belajar desain 3D (CAD).</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal active">
-            <!-- Modul 1: Elemen Mesin -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Modul Elemen Mesin -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold"><i class="fa-solid fa-book-open"></i></div>
                         <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Modul PDF</span>
                     </div>
                     <h3 class="font-heading text-xl font-bold text-white mb-2">Modul Elemen Mesin</h3>
@@ -79,13 +77,11 @@
                 </div>
             </div>
 
-            <!-- Modul 2: Tutorial SolidWorks -->
+            <!-- Tutorial SolidWorks -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-cube"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold"><i class="fa-solid fa-cube"></i></div>
                         <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Video 3D</span>
                     </div>
                     <h3 class="font-heading text-xl font-bold text-white mb-2">Tutorial SolidWorks</h3>
@@ -98,13 +94,11 @@
                 </div>
             </div>
 
-            <!-- Modul 3: Tutorial AutoCAD -->
+            <!-- Tutorial AutoCAD -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold"><i class="fa-solid fa-pen-ruler"></i></div>
                         <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Video 2D</span>
                     </div>
                     <h3 class="font-heading text-xl font-bold text-white mb-2">Tutorial AutoCAD</h3>
@@ -119,10 +113,8 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
-
 </body>
 </html>
