@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul & Tutorial - HMM POLINDRA</title>
+    <title>Himpunan Mahasiswa Mesin POLINDRA</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome buat Icon -->
@@ -11,10 +11,22 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDHEG345FX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZDHEG345FX');
+    </script>
+    
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
         .font-heading { font-family: 'Rajdhani', sans-serif; }
+        
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .gear-spin { animation: spin-slow 45s linear infinite; }
         
         .bg-pattern {
             background-color: #0f172a;
@@ -22,107 +34,341 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
+        /* Animasi Transisi Halaman Masuk */
+        @keyframes pageSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-transition { animation: pageSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between">
+<body class="bg-pattern text-slate-300 page-transition">
 
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110] transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white rounded-full overflow-hidden p-0.5 border-2 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                    <div class="w-10 h-10 bg-white rounded-full overflow-hidden p-0.5 border-2 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]">
                         <img src="logohmm.png" alt="Logo HMM" class="w-full h-full object-contain">
                     </div>
                     <div>
-                        <h1 class="font-heading font-bold text-xl text-white tracking-wider leading-tight">MODUL & TUTORIAL</h1>
-                        <p class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">HMM POLINDRA</p>
+                        <h1 class="font-heading font-bold text-xl text-white tracking-wider leading-tight drop-shadow-md">HMM POLINDRA</h1>
+                        <p class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Politeknik Negeri Indramayu</p>
                     </div>
                 </div>
                 
-                <div>
-                    <a href="index.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
-                    </a>
+                <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-300">
+                    <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
+                    <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
+                    <a href="#layanan" class="hover:text-blue-400 transition-colors">Services & Divisions</a>
+                    <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
+                    <a href="./store.html" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                 </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="btn-mobile-menu" class="text-slate-300 hover:text-blue-400 focus:outline-none text-2xl transition-transform duration-300">
+                        <i id="icon-mobile-menu" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-700/50 backdrop-blur-md absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
+                <a href="#beranda" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Home</a>
+                <a href="#tentang" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">About Us</a>
+                <a href="#layanan" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Services & Divisions</a>
+                <a href="#galeri" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Gallery</a>
+                <a href="./store.html" class="block text-amber-500 hover:text-amber-300 hover:bg-slate-800 px-3 py-3 rounded-md font-bold transition-colors"><i class="fa-solid fa-store mr-2"></i> HMM Store</a>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENT -->
-    <main class="max-w-5xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
-        <div class="text-center mb-14 reveal active">
-            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">Academic Hub</span>
-            <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Pusat Modul & Tutorial</h2>
-            <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Kumpulan modul praktikum, elemen mesin, serta video tutorial belajar desain 3D (CAD).</p>
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative w-full h-screen bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/70 to-[#0f172a]"></div>
+        <i class="fa-solid fa-gear absolute text-white/5 text-[400px] -right-20 -bottom-20 gear-spin pointer-events-none"></i>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10 reveal active">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-wide drop-shadow-lg">
+                Selamat Datang di Portal Resmi<br>
+                <span class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]">Himpunan Mahasiswa Mesin</span>
+            </h2>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 font-light max-w-2xl mx-auto">
+                Wadah penggerak potensi dan kreativitas mahasiswa Teknik Mesin Polindra. Terus berinovasi mencetak kader unggul yang siap bertugas dan berkarya. <strong class="text-white">Solidarity Forever!</strong>
+            </p>
+            <a href="#tentang" class="inline-block bg-blue-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.8)] hover:-translate-y-1">
+                Jelajahi Sekarang <i class="fa-solid fa-arrow-down ml-2 animate-bounce"></i>
+            </a>
         </div>
+    </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal active">
-            <!-- Modul 1: Elemen Mesin -->
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Modul PDF</span>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-2">Modul Elemen Mesin</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Materi dasar perhitungan poros, pasak, bantalan, roda gigi, dan komponen mekanis lainnya.</p>
-                </div>
-                <div>
-                    <a href="#" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-                        <i class="fa-solid fa-download mr-2"></i> Download Modul
-                    </a>
-                </div>
+    <!-- SECTION TENTANG -->
+    <section id="tentang" class="py-24 relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white border-b-2 border-blue-500 inline-block pb-3 tracking-wider">ABOUT US</h2>
             </div>
-
-            <!-- Modul 2: Tutorial SolidWorks -->
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-cube"></i>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Video 3D</span>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-2">Tutorial SolidWorks</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Belajar membuat model 3D dan simulasi rancangan mekanikal bersama video tutorial HMM.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center reveal">
+                <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <i class="fa-solid fa-users text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                    <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">480+</h3>
+                    <p class="text-slate-400 mt-2 font-medium tracking-wide">Mahasiswa Aktif</p>
                 </div>
-                <div>
-                    <a href="https://youtu.be/wb3khLFJc2s" target="_blank" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-                        <i class="fa-brands fa-youtube mr-2"></i> Tonton Video
-                    </a>
+                <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <i class="fa-solid fa-car-side text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                    <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">2</h3>
+                    <p class="text-slate-400 mt-2 font-medium tracking-wide">Tim Riset Otomotif</p>
                 </div>
-            </div>
-
-            <!-- Modul 3: Tutorial AutoCAD -->
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 text-2xl font-bold">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">Video 2D</span>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-2">Tutorial AutoCAD</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Panduan lengkap teknik menggambar kerja dan proyeksi 2D standar teknik mesin.</p>
-                </div>
-                <div>
-                    <a href="https://youtu.be/SqhsuV_9kXc" target="_blank" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-                        <i class="fa-brands fa-youtube mr-2"></i> Tonton Video
-                    </a>
+                <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <i class="fa-solid fa-trophy text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                    <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">2+</h3>
+                    <p class="text-slate-400 mt-2 font-medium tracking-wide">Penghargaan Nasional</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- SECTION LAYANAN -->
+    <section id="layanan" class="py-24 bg-slate-900/50 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white border-b-2 border-blue-500 inline-block pb-3 tracking-wider">SERVICES & DIVISIONS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <!-- Aspirasi -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-purple-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-purple-500/20 transition-colors">
+                            <i class="fa-solid fa-bullhorn text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Suara Mesin</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Layanan aspirasi, kritik, dan saran untuk kemajuan himpunan secara anonim.</p>
+                    </div>
+                    <div>
+                        <a href="https://forms.gle/uxnCgUCRcDYK7LQb9" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 text-sm flex items-center">
+                            Sampaikan Aspirasi <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Store -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-amber-500 hover:shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group flex flex-col justify-between">
+                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition-colors"></div>
+                    <div>
+                        <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center mb-5">
+                            <i class="fa-solid fa-bag-shopping text-2xl text-amber-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">HMM Store</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Katalog resmi untuk pemesanan kemeja PDH, stiker, dan merchandise HMM.</p>
+                    </div>
+                    <div>
+                        <a href="./store.html" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
+                            Kunjungi Store <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Software -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-500 hover:shadow-[0_0_25px_rgba(14,165,233,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-sky-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-sky-500/20 transition-colors">
+                            <i class="fa-solid fa-download text-2xl text-sky-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Master Software</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Akses download installer SolidWorks, AutoCAD, dan software teknik lainnya.</p>
+                    </div>
+                    <div>
+                        <a href="./software.html" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
+                            Buka Software <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Modul -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-emerald-500/20 transition-colors">
+                            <i class="fa-solid fa-book text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Modul Edukasi</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan modul elemen mesin dan video tutorial desain 3D (CAD).</p>
+                    </div>
+                    <div>
+                        <a href="./modul.html" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
+                            Mulai Belajar <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERI -->
+    <section id="galeri" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white border-b-2 border-blue-500 inline-block pb-3 tracking-wider">GALLERY</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                <!-- Foto 1: Technical Meeting -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+                    <img src="tm.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
+                        <span class="text-white font-bold text-lg drop-shadow-md">Technical Meeting</span>
+                        <span class="text-blue-300 text-xs">Persiapan Maba 2026</span>
+                    </div>
+                </div>
+                
+                <!-- Foto 2: Osprod -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+                    <img src="osprod.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
+                        <span class="text-white font-bold text-lg drop-shadow-md">OSPROD 2026</span>
+                        <span class="text-blue-300 text-xs">Orientasi Prodi Mesin</span>
+                    </div>
+                </div>
+
+                <!-- Foto 3: Wiragora EV -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+                    <img src="wiragora.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
+                        <span class="text-white font-bold text-lg drop-shadow-md">Wiragora EV</span>
+                        <span class="text-blue-300 text-xs">Tim Mobil Listrik</span>
+                    </div>
+                </div>
+
+                <!-- Foto 4: Gokart Team -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
+                    <img src="gokart.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
+                        <span class="text-white font-bold text-lg drop-shadow-md">Gokart Team</span>
+                        <span class="text-blue-300 text-xs">Tim Riset Otomotif</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                 <a href="https://drive.google.com/drive/folders/1TBkw7jADwFSCxjrE1au4SL5d6HGbEMpK" target="_blank" class="inline-block bg-slate-800 border border-slate-600 text-slate-300 font-semibold py-3 px-8 rounded-full hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-all duration-300 shadow-md">
+                     Lihat Semua Dokumentasi G-Drive <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                 </a>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
-        &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
+    <footer class="bg-slate-950 border-t border-slate-800 py-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-12 w-12 bg-white rounded-full overflow-hidden p-0.5 border border-slate-600">
+                        <img src="logohmm.png" alt="Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-white text-xl tracking-wider">HMM POLINDRA</h3>
+                        <p class="text-[10px] text-blue-500 font-bold uppercase tracking-widest">Solidarity Forever</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-400 mb-6 leading-relaxed">Wadah penggerak potensi dan kreativitas mahasiswa Teknik Mesin Polindra. Terus berinovasi mencetak kader unggul yang siap bertugas dan berkarya.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.instagram.com/hmm_polindra" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-all duration-300 text-lg hover:scale-110"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@hmm_polindra" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-black transition-all duration-300 text-lg hover:scale-110"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="reveal">
+                <h3 class="font-heading font-bold text-white text-lg mb-6 border-b border-slate-700 inline-block pb-2 tracking-wide">Hubungi Kami</h3>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-4 text-blue-500 text-lg w-4 text-center"></i> <span>Kampus Politeknik Negeri Indramayu<br>Jl. Raya Lohbener Lama No.8</span></li>
+                    <li class="flex items-center"><i class="fa-solid fa-envelope mr-4 text-blue-500 text-lg w-4 text-center"></i> <a href="mailto:himpunanmahasiswamesinpolindra@gmail.com" class="hover:text-blue-400 transition-colors">hmmpolindra@gmail.com</a></li>
+                </ul>
+            </div>
+            
+            <div class="reveal">
+                 <h3 class="font-heading font-bold text-white text-lg mb-6 border-b border-slate-700 inline-block pb-2 tracking-wide">Tautan Cepat</h3>
+                 <ul class="space-y-3 text-sm text-slate-400">
+                     <li><a href="#beranda" class="hover:text-blue-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Beranda Utama</a></li>
+                     <li><a href="./store.html" class="hover:text-amber-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Katalog HMM Store</a></li>
+                     <li><a href="https://forms.gle/uxnCgUCRcDYK7LQb9" class="hover:text-purple-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Layanan Aspirasi</a></li>
+                 </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-800/50 mt-12 pt-8 text-center text-xs text-slate-500 font-medium tracking-wide reveal">
+            &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA.<br class="md:hidden"> Built with Solidaritas ⚙️
+        </div>
     </footer>
 
+    <!-- TOAST NOTIFIKASI -->
+    <div id="toastNotif" class="fixed bottom-5 right-5 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_5px_20px_rgba(59,130,246,0.5)] p-4 transform translate-y-full opacity-0 transition-all duration-500 z-[120] flex items-start">
+        <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse"></i>
+        <div class="flex-1">
+            <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
+            <p class="text-xs text-slate-400 mt-1">Jangan lupa gabung grup WA angkatan, link ada di bio Instagram kita!</p>
+        </div>
+        <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const btnMobileMenu = document.getElementById('btn-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMobileMenu = document.getElementById('icon-mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btnMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                iconMobileMenu.classList.remove('fa-xmark');
+                iconMobileMenu.classList.add('fa-bars');
+            } else {
+                iconMobileMenu.classList.remove('fa-bars');
+                iconMobileMenu.classList.add('fa-xmark');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                iconMobileMenu.classList.remove('fa-xmark');
+                iconMobileMenu.classList.add('fa-bars');
+            });
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        setTimeout(() => {
+            const toast = document.getElementById('toastNotif');
+            toast.classList.remove('translate-y-full', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+        }, 2500);
+
+        function tutupNotif() {
+            const toast = document.getElementById('toastNotif');
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-full', 'opacity-0');
+        }
+        setTimeout(() => { tutupNotif(); }, 9000);
+    </script>
 </body>
 </html>
