@@ -4,25 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Himpunan Mahasiswa Mesin POLINDRA - Hub</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome buat Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-heading { font-family: 'Rajdhani', sans-serif; }
         
+        /* Animasi Roda Gigi Background */
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes spin-slow-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         .gear-spin { animation: spin-slow 45s linear infinite; }
         .gear-spin-reverse { animation: spin-slow-reverse 55s linear infinite; }
 
+        /* Pattern Background Bintik */
         .bg-pattern {
             background-color: #0f172a;
             background-image: radial-gradient(#1e293b 2px, transparent 2px), radial-gradient(#1e293b 2px, transparent 2px);
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
+        /* Animasi Muncul Bergiliran dari Bawah */
         @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
         .animate-masuk { animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
@@ -31,6 +37,7 @@
 </head>
 <body class="bg-pattern text-slate-200 min-h-screen flex flex-col items-center py-10 px-4 relative z-0 overflow-x-hidden">
 
+    <!-- ELEMEN GLOW NEON & MESIN (Background) -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px]"></div>
         <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"></div>
@@ -39,6 +46,7 @@
         <i class="fa-solid fa-cog absolute text-slate-800/20 text-[200px] top-1/2 left-1/4 gear-spin"></i>
     </div>
 
+    <!-- HEADER / PROFILE -->
     <header class="text-center mb-8 max-w-lg w-full mt-4 flex flex-col items-center animate-masuk">
         <div class="w-32 h-32 bg-white rounded-full border-4 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)] flex items-center justify-center mb-6 overflow-hidden p-1 relative z-10 hover:scale-105 transition-transform duration-500">
             <img src="logohmm.png" alt="Logo HMM POLINDRA" class="w-full h-full object-contain">
@@ -47,6 +55,7 @@
         <p class="text-sm text-blue-400 tracking-widest uppercase mt-2 font-bold">Politeknik Negeri Indramayu</p>
     </header>
 
+    <!-- PENGUMUMAN / RUNNING TEXT -->
     <div class="max-w-lg w-full bg-blue-950/60 border border-blue-500/40 rounded-lg p-3 mb-6 overflow-hidden flex items-center backdrop-blur-sm shadow-[0_0_15px_rgba(59,130,246,0.3)] animate-masuk delay-1 hover:border-blue-400 transition-colors duration-300">
         <i class="fa-solid fa-bullhorn text-blue-400 mr-3 animate-pulse"></i>
         <marquee class="text-sm font-medium text-slate-200">
@@ -54,8 +63,10 @@
         </marquee>
     </div>
 
+    <!-- MAIN KONTEN -->
     <main class="max-w-lg w-full space-y-8">
         
+        <!-- SECTION 1: SOSIAL MEDIA -->
         <section class="animate-masuk delay-2">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-globe mr-3 text-blue-500"></i> Social Accounts
@@ -76,15 +87,12 @@
             </div>
         </section>
 
+        <!-- SECTION 2: ORGANISASI & ASPIRASI -->
         <section class="animate-masuk delay-3">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-building-columns text-purple-400 mr-3"></i> Organisasi & Layanan
             </h2>
             <div class="space-y-3">
-                <a href="#" class="group flex items-center justify-center p-4 bg-slate-800/70 border border-slate-600 rounded-xl hover:bg-indigo-600/50 hover:border-indigo-400 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(79,70,229,0.3)] active:scale-95 transition-all duration-300 backdrop-blur-md">
-                    <i class="fa-solid fa-users text-xl mr-3 group-hover:text-white text-indigo-300 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-medium group-hover:text-white">Profil Pengurus HMM</span>
-                </a>
                 <a href="https://forms.gle/uxnCgUCRcDYK7LQb9" target="_blank" rel="noopener noreferrer" class="group flex items-center p-4 bg-purple-900/30 border border-purple-500/40 rounded-xl hover:bg-purple-600/50 hover:border-purple-400 hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(168,85,247,0.3)] active:scale-95 transition-all duration-300 backdrop-blur-md shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                     <div class="w-12 h-12 rounded-full bg-slate-900 flex items-center justify-center border border-purple-500/50 mr-4 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-comments text-purple-400 text-xl group-hover:animate-bounce"></i>
@@ -97,6 +105,7 @@
             </div>
         </section>
 
+        <!-- SECTION 3: DANUS & DOKUMENTASI -->
         <section class="animate-masuk delay-4">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-camera-retro text-teal-400 mr-3"></i> Danus & Dokumentasi
@@ -121,6 +130,7 @@
             </div>
         </section>
 
+        <!-- SECTION 4: AUTOMOTIVE & RESEARCH TEAMS -->
         <section class="animate-masuk delay-5">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-car-side text-blue-500 mr-3"></i> Automotive & Research Teams
@@ -159,11 +169,14 @@
             </div>
         </section>
 
+        <!-- SECTION 5: EDUKASI & MODUL MESIN -->
         <section class="animate-masuk delay-6">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-book-open text-amber-500 mr-3"></i> Edukasi & Modul Mesin
             </h2>
             <div class="space-y-3">
+                
+                <!-- Modul Elemen Mesin -->
                 <a href="#" class="group flex flex-col p-4 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-amber-500 hover:bg-amber-900/10 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(245,158,11,0.2)] active:scale-95 transition-all duration-300 backdrop-blur-md relative overflow-hidden">
                     <div class="flex items-center mb-1 relative z-10">
                         <i class="fa-solid fa-file-pdf text-red-400 text-lg mr-3 w-6 text-center group-hover:scale-110 transition-transform"></i>
@@ -172,18 +185,44 @@
                     <p class="text-xs text-slate-400 ml-10 relative z-10">Akses materi dasar teknik, perhitungan, dan standar komponen mesin.</p>
                     <i class="fa-solid fa-cogs absolute -bottom-4 -right-4 text-slate-700/30 text-6xl group-hover:text-amber-600/30 transition-all duration-500 gear-spin-reverse"></i>
                 </a>
-                <a href="#" class="group flex flex-col p-4 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-amber-500 hover:bg-amber-900/10 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(245,158,11,0.2)] active:scale-95 transition-all duration-300 backdrop-blur-md relative overflow-hidden">
+                
+                <!-- KOTAK TUTORIAL DIBELAH DUA (SolidWorks & AutoCAD) -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Tombol SolidWorks -->
+                    <a href="https://youtu.be/wb3khLFJc2s" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-4 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-amber-500 hover:bg-amber-900/10 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(245,158,11,0.2)] active:scale-95 transition-all duration-300 backdrop-blur-md relative overflow-hidden">
+                        <div class="flex items-center mb-1 relative z-10">
+                            <i class="fa-brands fa-youtube text-red-500 text-lg mr-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm group-hover:text-white text-slate-100">SolidWorks</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1 relative z-10">Belajar Desain 3D</p>
+                        <i class="fa-solid fa-cube absolute -bottom-3 -right-3 text-slate-700/30 text-5xl group-hover:text-amber-600/30 transition-all duration-500 gear-spin"></i>
+                    </a>
+                    
+                    <!-- Tombol AutoCAD -->
+                    <a href="https://youtu.be/SqhsuV_9kXc" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-4 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-amber-500 hover:bg-amber-900/10 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(245,158,11,0.2)] active:scale-95 transition-all duration-300 backdrop-blur-md relative overflow-hidden">
+                        <div class="flex items-center mb-1 relative z-10">
+                            <i class="fa-brands fa-youtube text-red-500 text-lg mr-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm group-hover:text-white text-slate-100">AutoCAD</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1 relative z-10">Belajar Drafting 2D</p>
+                        <i class="fa-solid fa-pen-ruler absolute -bottom-3 -right-3 text-slate-700/30 text-5xl group-hover:text-amber-600/30 transition-all duration-500 gear-spin-reverse"></i>
+                    </a>
+                </div>
+
+                <!-- FITUR BARU: MASTER INSTALLER SOFTWARE -->
+                <a href="https://drive.google.com/drive/folders/10IyHNYZKs-0bX1NyIQUcWNG3pQThCQy5?usp=drive_link" target="_blank" rel="noopener noreferrer" class="group flex flex-col p-4 bg-slate-800/60 border border-slate-700 rounded-xl hover:border-amber-500 hover:bg-amber-900/10 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(245,158,11,0.2)] active:scale-95 transition-all duration-300 backdrop-blur-md relative overflow-hidden mt-3">
                     <div class="flex items-center mb-1 relative z-10">
-                        <i class="fa-brands fa-youtube text-red-500 text-lg mr-3 w-6 text-center group-hover:scale-110 transition-transform"></i>
-                        <span class="font-bold group-hover:text-white text-slate-100">Tutorial SolidWorks & AutoCAD</span>
+                        <i class="fa-solid fa-download text-sky-400 text-lg mr-3 w-6 text-center group-hover:scale-110 transition-transform"></i>
+                        <span class="font-bold group-hover:text-white text-slate-100">Master Installer CAD & SolidWorks</span>
                     </div>
-                    <p class="text-xs text-slate-400 ml-10 relative z-10">Kumpulan playlist belajar desain CAD 3D/2D dari dasar hingga mahir.</p>
-                    <i class="fa-solid fa-cog absolute -bottom-4 -right-4 text-slate-700/30 text-6xl group-hover:text-amber-600/30 transition-all duration-500 gear-spin"></i>
+                    <p class="text-xs text-slate-400 ml-10 relative z-10">Akses G-Drive untuk file aplikasi (installer), panduan lisensi, dan video cara instalasi di laptop/PC.</p>
+                    <i class="fa-solid fa-laptop-code absolute -bottom-4 -right-4 text-slate-700/30 text-6xl group-hover:text-amber-600/30 transition-all duration-500 gear-spin"></i>
                 </a>
+
             </div>
         </section>
 
-        <!-- SECTION: PORTAL BERITA & ARTIKEL KETEKNOLOGIAN MESIN (Langsung ke Artikel Asli) -->
+        <!-- SECTION 6: PORTAL BERITA & ARTIKEL KETEKNOLOGIAN MESIN -->
         <section class="animate-masuk delay-6">
             <h2 class="font-heading text-xl font-bold border-b border-slate-600 pb-2 mb-4 text-slate-100 flex items-center">
                 <i class="fa-solid fa-newspaper text-emerald-400 mr-3"></i> Jurnal & Artikel Mesin
