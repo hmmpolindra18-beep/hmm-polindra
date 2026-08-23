@@ -169,7 +169,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Katalog resmi untuk pemesanan kemeja PDH, stiker, dan merchandise HMM.</p>
                     </div>
                     <div>
-                        <a href="./store.html" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
+                        <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
                             Kunjungi Store <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -185,7 +185,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Akses download installer SolidWorks, AutoCAD, dan software teknik lainnya.</p>
                     </div>
                     <div>
-                        <a href="./software.html" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
+                        <a href="./software.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
                             Buka Software <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -201,7 +201,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan modul elemen mesin dan video tutorial desain 3D (CAD).</p>
                     </div>
                     <div>
-                        <a href="./modul.html" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
+                        <a href="./modul.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
                             Mulai Belajar <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -218,7 +218,6 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 reveal">
-                <!-- Foto 1: Technical Meeting -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
                     <img src="tm.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
@@ -226,8 +225,6 @@
                         <span class="text-blue-300 text-xs">Persiapan Maba 2026</span>
                     </div>
                 </div>
-                
-                <!-- Foto 2: Osprod -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
                     <img src="osprod.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
@@ -235,8 +232,6 @@
                         <span class="text-blue-300 text-xs">Orientasi Prodi Mesin</span>
                     </div>
                 </div>
-
-                <!-- Foto 3: Wiragora EV -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
                     <img src="wiragora.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
@@ -244,8 +239,6 @@
                         <span class="text-blue-300 text-xs">Tim Mobil Listrik</span>
                     </div>
                 </div>
-
-                <!-- Foto 4: Gokart Team -->
                 <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
                     <img src="gokart.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
@@ -295,7 +288,7 @@
                  <h3 class="font-heading font-bold text-white text-lg mb-6 border-b border-slate-700 inline-block pb-2 tracking-wide">Tautan Cepat</h3>
                  <ul class="space-y-3 text-sm text-slate-400">
                      <li><a href="#beranda" class="hover:text-blue-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Beranda Utama</a></li>
-                     <li><a href="./store.html" class="hover:text-amber-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Katalog HMM Store</a></li>
+                     <li><a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="hover:text-amber-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Katalog HMM Store</a></li>
                      <li><a href="https://forms.gle/uxnCgUCRcDYK7LQb9" class="hover:text-purple-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Layanan Aspirasi</a></li>
                  </ul>
             </div>
@@ -317,6 +310,15 @@
 
     <!-- SCRIPT -->
     <script>
+        // Auto-Restore Posisi Scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedPosition = sessionStorage.getItem('scrollPosition');
+            if (savedPosition !== null) {
+                window.scrollTo(0, parseInt(savedPosition));
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
+
         const btnMobileMenu = document.getElementById('btn-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
         const iconMobileMenu = document.getElementById('icon-mobile-menu');
