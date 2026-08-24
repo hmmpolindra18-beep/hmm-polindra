@@ -11,8 +11,11 @@
     
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .font-heading { font-family: 'Rajdhani', sans-serif; }
+        
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .gear-spin { animation: spin-slow 15s linear infinite; }
         
         .bg-pattern {
             background-color: #0f172a;
@@ -20,15 +23,41 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        @keyframes pageSlideIn {
-            from { opacity: 0; transform: translateY(20px); }
+        /* Animasi Slide-Up Loading Screen */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: #020617;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #loading-screen.slide-up {
+            transform: translateY(-100%);
+        }
+
+        @keyframes contentReveal {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-transition { animation: pageSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .fade-in { animation: pageSlideIn 0.5s ease-out forwards; }
+        .page-reveal { animation: contentReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .fade-in { animation: contentReveal 0.6s ease-out forwards; }
     </style>
 </head>
-<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-transition">
+<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-reveal">
+
+    <!-- LOADING SCREEN CURTAIN -->
+    <div id="loading-screen">
+        <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
+            <i class="fa-solid fa-gear text-indigo-500 text-7xl gear-spin absolute"></i>
+            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
+        </div>
+        <h2 class="font-heading font-bold text-white text-3xl tracking-wider">JURNAL & ARTIKEL</h2>
+        <p class="text-xs text-indigo-400 font-bold tracking-widest mt-2 uppercase animate-pulse">Memuat Pustaka Ilmiah...</p>
+    </div>
 
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
@@ -193,7 +222,7 @@
                 </div>
             </div>
 
-            <!-- TOPIK PENGGANTI 1: Analisis Getaran Mesin (Jurnal Rotasi Undip - Aktif) -->
+            <!-- TOPIK PENGGANTI 1 -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -210,7 +239,7 @@
                 </div>
             </div>
 
-            <!-- TOPIK PENGGANTI 2: Otomasi Sistem Pneumatik (Jurnal Sinergi Polinema/Politeknik - Aktif) -->
+            <!-- TOPIK PENGGANTI 2 -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -273,8 +302,17 @@
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
 
-    <!-- Script Load More -->
+    <!-- Script Utama & Slide-Up Loader -->
     <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loading-screen');
+                if (loader) {
+                    loader.classList.add('slide-up');
+                }
+            }, 300);
+        });
+
         function loadMoreJurnal() {
             const hiddenItems = document.querySelectorAll('.hidden-jurnal');
             hiddenItems.forEach(item => {
