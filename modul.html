@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modul Edukasi - HMM POLINDRA</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,6 +40,7 @@
 </head>
 <body class="bg-pattern text-slate-300">
 
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-emerald-500 text-7xl gear-spin absolute"></i>
@@ -49,6 +51,7 @@
     </div>
 
     <div class="page-reveal min-h-screen flex flex-col justify-between">
+        <!-- NAVBAR -->
         <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
@@ -70,52 +73,77 @@
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
+        <!-- CONTENT -->
+        <main class="max-w-6xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
             <div class="text-center mb-14">
-                <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/20 uppercase tracking-widest">Materi Akademik & Tutorial</span>
-                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Modul & Bahan Ajar Mesin</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Akses kumpulan modul praktikum, lembar kerja elemen mesin, termodinamika, serta video tutorial desain CAD 3D.</p>
+                <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/20 uppercase tracking-widest">Pusat Akademik & Tutorial</span>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Materi & Bahan Ajar Mesin</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Akses materi mata kuliah, video tutorial CAD, serta arsip bank soal untuk menunjang prestasi akademik.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
+
+            <!-- GRID 4 KATEGORI UTAMA -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- 1. Materi Mata Kuliah -->
+                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full">PDF Modul</span>
-                            <i class="fa-solid fa-book-bookmark text-emerald-400 text-2xl"></i>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full">Akademik</span>
+                            <i class="fa-solid fa-book-bookmark text-emerald-400 text-3xl"></i>
                         </div>
-                        <h3 class="font-heading text-xl font-bold text-white mb-3">Modul Praktikum Elemen Mesin I & II</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Panduan perhitungan poros, bantalan, roda gigi, dan pasak sesuai standar ISO.</p>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3">Materi Mata Kuliah</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Kumpulan silabus, modul praktikum, dan bahan ajar perkuliahan Teknik Mesin dari semester awal hingga akhir (Termodinamika, Elemen Mesin, Kinematika, dll).</p>
                     </div>
-                    <a href="https://drive.google.com" target="_blank" class="inline-flex items-center text-sm font-bold text-emerald-400 hover:text-emerald-300">
-                        Download Modul <i class="fa-solid fa-download ml-2"></i>
+                    <a href="#" target="_blank" class="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-download mr-2"></i> Unduh Materi Kuliah
                     </a>
                 </div>
-                <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
+
+                <!-- 2. Tutorial SolidWorks -->
+                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full">Video Tutorial</span>
-                            <i class="fa-solid fa-video text-emerald-400 text-2xl"></i>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full">Video 3D CAD</span>
+                            <i class="fa-solid fa-cube text-emerald-400 text-3xl"></i>
                         </div>
-                        <h3 class="font-heading text-xl font-bold text-white mb-3">Tutorial SolidWorks Assembly & Drawing</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Video panduan langkah demi langkah cara merakit komponen 3D dan membuat gambar teknik.</p>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3">Tutorial SolidWorks</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Panduan video langkah demi langkah (step-by-step) cara membuat part 3D, perakitan (assembly), hingga drawing teknik profesional.</p>
                     </div>
-                    <a href="https://youtube.com" target="_blank" class="inline-flex items-center text-sm font-bold text-emerald-400 hover:text-emerald-300">
-                        Tonton Video <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <a href="https://youtu.be/wb3khLFJc2s" target="_blank" class="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-play mr-2"></i> Tonton Tutorial SolidWorks
                     </a>
                 </div>
-                <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
+
+                <!-- 3. Tutorial AutoCAD -->
+                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full">Referensi</span>
-                            <i class="fa-solid fa-calculator text-emerald-400 text-2xl"></i>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full">Drafting 2D & 3D</span>
+                            <i class="fa-solid fa-compass-drafting text-emerald-400 text-3xl"></i>
                         </div>
-                        <h3 class="font-heading text-xl font-bold text-white mb-3">Tabel Standar & Formula Termodinamika</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan tabel properti fluida, siklus Carnot, Rankine, dan rumus konversi energi.</p>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3">Tutorial AutoCAD</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Kumpulan video dan lembar kerja latihan membuat gambar teknik 2D presisi, proyeksi orthogonal, dan denah permesinan.</p>
                     </div>
-                    <a href="https://drive.google.com" target="_blank" class="inline-flex items-center text-sm font-bold text-emerald-400 hover:text-emerald-300">
-                        Unduh Dokumen <i class="fa-solid fa-download ml-2"></i>
+                    <a href="https://youtu.be/SqhsuV_9kXc?si=aD139O-5rZM5h6tT" target="_blank" class="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-play mr-2"></i> Tonton Tutorial AutoCAD
                     </a>
                 </div>
+
+                <!-- 4. Bank Soal -->
+                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-emerald-500 shadow-xl transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full">Arsip Ujian</span>
+                            <i class="fa-solid fa-file-lines text-emerald-400 text-3xl"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3">Bank Soal & Kuis</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Arsip lengkap soal Ujian Tengah Semester (UTS) dan Ujian Akhir Semester (UAS) dari tahun-tahun sebelumnya untuk bahan latihan.</p>
+                    </div>
+                    <a href="#" target="_blank" class="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-folder-open mr-2"></i> Akses Bank Soal
+                    </a>
+                </div>
+
             </div>
         </main>
 
