@@ -433,7 +433,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            // Cek apakah user baru saja klik tombol Kembali dari halaman jurnal
             if (localStorage.getItem('scrollBackToJurnal') === 'true') {
                 localStorage.removeItem('scrollBackToJurnal');
                 const jurnalSection = document.getElementById('jurnal');
