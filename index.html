@@ -25,7 +25,6 @@
             background-size: 100px 100px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        /* LOADING SCREEN DUA ARAH (FIXED FULL VIEWPORT) */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -45,7 +44,6 @@
             transform: translateY(-100%);
         }
 
-        /* Efek Muncul Konten Mengikuti Loading */
         @keyframes contentReveal {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -54,7 +52,7 @@
             animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s ease-out; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -301,7 +299,7 @@
             </div>
         </section>
 
-        <!-- SECTION GALERI (MENGGUNAKAN FOTO LOKAL) -->
+        <!-- SECTION GALERI -->
         <section id="galeri" class="py-24 relative z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
@@ -390,77 +388,32 @@
         </footer>
     </div>
 
-    <!-- SCRIPT LOGIKA LOADING SCREEN & RESTORE SCROLL -->
+    <!-- SCRIPT (BERSIH DARI CLICK INTERCEPTOR) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const loader = document.getElementById('loading-screen');
-            const navEntries = performance.getEntriesByType('navigation');
-            const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-
-            // Jika halaman di-refresh, reset session agar loading screen muncul kembali secara normal
-            if (isReload) {
-                sessionStorage.removeItem('scrollPosition');
-                localStorage.removeItem('scrollBackToJurnal');
-            }
-
+            // Eksekusi Scroll Restore Instan SEBELUM layar kebuka
             const savedPosition = sessionStorage.getItem('scrollPosition');
             const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
 
-            // Jika kembali dari jurnal, scroll ke section jurnal tanpa loading screen
-            if (!isReload && scrollBackJurnal === 'true') {
+            if (scrollBackJurnal === 'true') {
                 localStorage.removeItem('scrollBackToJurnal');
-                if (loader) {
-                    loader.style.transition = 'none';
-                    loader.classList.add('slide-up');
-                }
                 const jurnalSection = document.getElementById('jurnal');
                 if (jurnalSection) {
                     jurnalSection.scrollIntoView({ behavior: 'instant' });
                 }
-                renderNotifikasi();
-                return;
-            }
-
-            // Jika kembali dari halaman lain (Store, Modul, Software), kembalikan posisi scroll tanpa loading screen
-            if (!isReload && savedPosition !== null) {
-                if (loader) {
-                    loader.style.transition = 'none';
-                    loader.classList.add('slide-up');
-                }
+            } else if (savedPosition !== null) {
                 window.scrollTo({ top: parseInt(savedPosition), behavior: 'instant' });
                 sessionStorage.removeItem('scrollPosition');
-                renderNotifikasi();
-                return;
             }
-
-            // Kondisi Masuk Pertama Kali ATAU di-Refresh -> Tampilkan Loading Screen Normal
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    if (loader) loader.classList.add('slide-up');
-                }, 600);
-            });
             renderNotifikasi();
         });
 
-        // Intervensi klik menu untuk menyimpan posisi scroll sebelum pindah ke subpage
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a');
-            if (!link) return;
-            
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && !href.includes('wa.me') && link.getAttribute('target') !== '_blank') {
-                e.preventDefault();
+        // Buka Tirai Loading secara normal
+        window.addEventListener('load', function() {
+            setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
-                if (loader) {
-                    loader.style.transition = 'transform 1s cubic-bezier(0.77, 0, 0.175, 1)';
-                    loader.classList.remove('slide-up');
-                    setTimeout(function() {
-                        window.location.href = href;
-                    }, 900);
-                } else {
-                    window.location.href = href;
-                }
-            }
+                if (loader) loader.classList.add('slide-up');
+            }, 600);
         });
 
         let daftarNotifikasi = [
