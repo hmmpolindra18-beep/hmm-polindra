@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HMM Store - HMM POLINDRA</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,6 +40,7 @@
 </head>
 <body class="bg-pattern text-slate-300">
 
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-amber-500 text-7xl gear-spin absolute"></i>
@@ -49,6 +51,7 @@
     </div>
 
     <div class="page-reveal min-h-screen flex flex-col justify-between">
+        <!-- NAVBAR -->
         <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
@@ -70,67 +73,66 @@
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
+        <!-- CONTENT -->
+        <main class="max-w-6xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
             <div class="text-center mb-14">
                 <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase tracking-widest">Merchandise Eksklusif</span>
                 <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Koleksi Atribut HMM</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Dapatkan atribut resmi kebanggaan Teknik Mesin Polindra.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+            <!-- GRID PRODUK (2 Produk: Paket Gelang & Stiker [Ready] & Baju Birdong [Close]) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- PRODUK 1: PAKET GELANG & STIKER (READY STOCK + SLIDER) -->
                 <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
                     <div>
-                        <div class="h-64 bg-slate-900 overflow-hidden relative">
-                            <img src="baju.jpeg" alt="Baju / PDH HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+                        <!-- IMAGE SLIDER CONTAINER -->
+                        <div class="h-72 bg-slate-900 overflow-hidden relative group/slider">
+                            <div class="slider-track flex h-full transition-transform duration-500 ease-out" id="sliderTrack">
+                                <img src="gelang.jpeg" alt="Gelang HMM" class="w-full h-full object-cover shrink-0">
+                                <img src="stiker.jpeg" alt="Stiker HMM" class="w-full h-full object-cover shrink-0">
+                            </div>
+                            <span class="absolute top-3 right-3 bg-emerald-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">Ready Stock</span>
+                            
+                            <!-- Slider Nav Buttons -->
+                            <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity z-10 focus:outline-none"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                            <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity z-10 focus:outline-none"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                         </div>
+                        
                         <div class="p-6">
-                            <h3 class="font-heading text-xl font-bold text-white mb-2">PDH / Baju Resmi HMM</h3>
-                            <p class="text-slate-400 text-sm mb-4">Kemeja dinas harian bordir lengkap kualitas premium, bahan american drill.</p>
-                            <span class="text-amber-400 font-bold text-lg">Rp 150.000</span>
+                            <h3 class="font-heading text-2xl font-bold text-white mb-2">Paket Gelang & Stiker HMM</h3>
+                            <p class="text-slate-400 text-sm mb-4">Bundling eksklusif gelang solidaritas dan paket stiker vinyl anti air tahan lama untuk helm, laptop, dan kendaraan.</p>
+                            <span class="text-amber-400 font-bold text-xl">Rp 25.000</span>
                         </div>
                     </div>
                     <div class="p-6 pt-0">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Baju/PDH%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
+                        <a href="https://wa.me/6285314479623?text=Halo%20Admin,%20saya%20mau%20pesan%20Paket%20Gelang%20%26%20Stiker%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3 rounded-xl transition-colors shadow-md">
                             <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
                         </a>
                     </div>
                 </div>
-                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
+
+                <!-- PRODUK 2: BAJU BIRDONG (CLOSE) -->
+                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl transition-all group flex flex-col justify-between opacity-90">
                     <div>
-                        <div class="h-64 bg-slate-900 overflow-hidden relative">
-                            <img src="gelang.jpeg" alt="Gelang HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+                        <div class="h-72 bg-slate-900 overflow-hidden relative">
+                            <img src="baju.jpeg" alt="Baju Birdong HMM" class="w-full h-full object-cover filter brightness-75">
+                            <span class="absolute top-3 right-3 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Close / Habis</span>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-heading text-xl font-bold text-white mb-2">Gelang Solidaritas HMM</h3>
-                            <p class="text-slate-400 text-sm mb-4">Gelang eksklusif simbol solidaritas mahasiswa Teknik Mesin Polindra.</p>
-                            <span class="text-amber-400 font-bold text-lg">Rp 15.000</span>
+                            <h3 class="font-heading text-2xl font-bold text-white mb-2">Baju / PDH Birdong HMM</h3>
+                            <p class="text-slate-400 text-sm mb-4">Kemeja dinas harian (PDH) biru dongker bordir lengkap kualitas premium, bahan american drill. <strong>Sesi pemesanan saat ini ditutup.</strong></p>
+                            <span class="text-slate-400 font-bold text-xl">Rp 150.000</span>
                         </div>
                     </div>
                     <div class="p-6 pt-0">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Gelang%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
-                            <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
+                        <a href="https://wa.me/6285314479623?text=Halo%20Admin,%20saya%20ingin%20bertanya%20terkait%20jadwal%20pre-order%20Baju%20Birdong%20HMM%20berikutnya" target="_blank" class="w-full block text-center bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold py-3 rounded-xl transition-colors shadow-md">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Tanya Jadwal Pre-Order
                         </a>
                     </div>
                 </div>
-                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="h-64 bg-slate-900 overflow-hidden relative">
-                            <img src="stiker.jpeg" alt="Stiker HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-heading text-xl font-bold text-white mb-2">Paket Stiker Eksklusif HMM</h3>
-                            <p class="text-slate-400 text-sm mb-6">Stiker vinyl anti air tahan lama untuk helm, laptop, dan kendaraan.</p>
-                            <span class="text-amber-400 font-bold text-lg">Rp 10.000</span>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Stiker%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
-                            <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </main>
 
@@ -139,7 +141,7 @@
         </footer>
     </div>
 
-    <!-- SCRIPT NORMAL -->
+    <!-- SCRIPT (LOADING & IMAGE SLIDER) -->
     <script>
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
@@ -148,6 +150,30 @@
                 if (loader) loader.classList.add('slide-up');
             }, 600);
         });
+
+        // Logika Slider Gambar Kartu Gelang & Stiker
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const track = document.getElementById('sliderTrack');
+            if(track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }
+
+        // Auto slide setiap 4 detik
+        setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
