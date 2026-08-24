@@ -6,19 +6,8 @@
     <title>Himpunan Mahasiswa Mesin POLINDRA</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome buat Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDHEG345FX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-ZDHEG345FX');
-    </script>
     
     <style>
         html { scroll-behavior: smooth; }
@@ -34,7 +23,7 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        /* LOADING SCREEN CENTER FIX */
+        /* LOADING SCREEN DUA ARAH (CENTER & SMOOTH) */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -47,20 +36,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateY(0);
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
         #loading-screen.slide-up {
             transform: translateY(-100%);
         }
 
-        /* Efek Muncul Konten Mengikuti Loading */
         @keyframes contentReveal {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-reveal {
-            animation: contentReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .page-reveal { animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -68,7 +55,7 @@
 </head>
 <body class="bg-pattern text-slate-300 page-reveal">
 
-    <!-- LOADING SCREEN CURTAIN -->
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-blue-500 text-7xl gear-spin absolute"></i>
@@ -92,7 +79,6 @@
                     </div>
                 </div>
                 
-                <!-- MENU UTAMA + IKON NOTIFIKASI BERDEKATAN -->
                 <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-slate-300">
                     <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
@@ -101,27 +87,22 @@
                     <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
                     <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                     
-                    <!-- GARIS PEMBATAS KECIL -->
                     <div class="h-5 w-[1px] bg-slate-700"></div>
 
-                    <!-- TOMBOL LONCENG NOTIFIKASI -->
                     <div class="relative">
                         <button onclick="toggleNotifDropdown()" id="btnNotif" class="relative w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md focus:outline-none">
                             <i class="fa-solid fa-bell text-xs"></i>
                             <span id="notifBadge" class="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
                         </button>
 
-                        <!-- DROPDOWN RIWAYAT NOTIFIKASI -->
-                        <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-[200] transform origin-top-right transition-all duration-300">
+                        <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-[200]">
                             <div class="bg-slate-800 px-5 py-3.5 border-b border-slate-700 flex justify-between items-center">
                                 <h3 class="font-heading font-bold text-white text-base tracking-wide flex items-center gap-2">
                                     <i class="fa-solid fa-bell text-blue-400"></i> Pusat Informasi & Update
                                 </h3>
                                 <span class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2.5 py-0.5 rounded-full border border-blue-500/30">Live Update</span>
                             </div>
-                            
                             <div id="notifListContainer" class="max-h-80 overflow-y-auto divide-y divide-slate-800/80 text-left"></div>
-                            
                             <div class="bg-slate-950 px-4 py-2.5 text-center border-t border-slate-800 flex justify-between items-center">
                                 <span class="text-[11px] text-slate-500 font-medium">HMM POLINDRA &copy; 2026</span>
                                 <button onclick="tambahNotifDemo()" class="text-[10px] text-blue-400 hover:underline font-bold">+ Tes Update Info</button>
@@ -130,7 +111,6 @@
                     </div>
                 </div>
 
-                <!-- MOBILE MENU BUTTON -->
                 <div class="md:hidden flex items-center gap-3">
                     <div class="relative">
                         <button onclick="toggleNotifDropdownMobile()" class="relative w-9 h-9 rounded-full bg-slate-800 border border-slate-600 text-slate-300 flex items-center justify-center">
@@ -150,7 +130,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-700/50 backdrop-blur-md absolute w-full shadow-xl">
             <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
                 <a href="#beranda" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Home</a>
@@ -395,15 +374,35 @@
         </div>
     </footer>
 
-    <!-- SCRIPT UTAMA -->
+    <!-- SCRIPT TRANSISI DUA ARAH -->
     <script>
+        // Animasi Masuk (Tirai Terangkat)
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
+                if (loader) loader.classList.add('slide-up');
+            }, 600); // Waktu jeda pas agar tidak terlalu cepat/lambat
+        });
+
+        // Animasi Keluar/Pindah Halaman (Tirai Menurun Kembali)
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (!link) return;
+            
+            const href = link.getAttribute('href');
+            // Cek apakah link internal (pindah halaman .html)
+            if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && !href.includes('wa.me') && link.getAttribute('target') !== '_blank') {
+                e.preventDefault();
+                const loader = document.getElementById('loading-screen');
                 if (loader) {
-                    loader.classList.add('slide-up');
+                    loader.classList.remove('slide-up'); // Turunkan tirai menutup layar
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 900); // Tunggu tirai turun penuh sebelum pindah
+                } else {
+                    window.location.href = href;
                 }
-            }, 1200);
+            }
         });
 
         let daftarNotifikasi = [
