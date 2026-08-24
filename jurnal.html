@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <div>
-                    <!-- Tombol Kembali dengan Handler JavaScript Presisi -->
-                    <a href="index.html" onclick="simpanPosisiDanKembali(event);" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
+                    <!-- Tombol Kembali dengan trigger localStorage -->
+                    <a href="index.html" onclick="localStorage.setItem('scrollBackToJurnal', 'true');" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Kembali
                     </a>
                 </div>
@@ -61,10 +61,9 @@
             <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Kumpulan artikel dan jurnal penelitian seputar desain mekanikal, manufaktur CNC, material komposit, hingga sistem konversi energi untuk referensi tugas akhir.</p>
         </div>
 
-        <!-- GRID ARTIKEL (6 TAMPIL PERTAMA) -->
+        <!-- GRID ARTIKEL -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jurnal-container">
             
-            <!-- 1. Desain & Analisis CAD -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -81,7 +80,6 @@
                 </div>
             </div>
 
-            <!-- 2. Pemesinan CNC -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -98,7 +96,6 @@
                 </div>
             </div>
 
-            <!-- 3. Material Komposit -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -115,7 +112,6 @@
                 </div>
             </div>
 
-            <!-- 4. Perawatan Mesin -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -132,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- 5. Perancangan Elemen Mesin -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -149,7 +144,6 @@
                 </div>
             </div>
 
-            <!-- 6. Preventive Maintenance -->
             <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -166,9 +160,8 @@
                 </div>
             </div>
 
-            <!-- ========================= ITEM HIDDEN (MUNCUL SAAT KLIK LOAD MORE) ========================= -->
+            <!-- ========================= ITEM HIDDEN (LOAD MORE) ========================= -->
             
-            <!-- 7. Optimasi Material -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -185,7 +178,6 @@
                 </div>
             </div>
 
-            <!-- 8. Manufaktur Bubut (LINK LANGSUNG PDF UNSRI - TERVERIFIKASI AKTIF) -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -202,7 +194,6 @@
                 </div>
             </div>
 
-            <!-- 9. Prestasi Mesin & Konsumsi Bahan Bakar (PDF UNESA - AKTIF) -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -219,7 +210,6 @@
                 </div>
             </div>
 
-            <!-- 10. Sistem Pendingin & Radiator (PDF REPOSITORY UGM - AKTIF) -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -236,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- 11. Otomasi CNC Milling -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -253,7 +242,6 @@
                 </div>
             </div>
 
-            <!-- 12. Metalurgi / Perlakuan Panas (LINK LANGSUNG PDF PNL - TERVERIFIKASI AKTIF) -->
             <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between opacity-0">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -284,15 +272,8 @@
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
 
-    <!-- Script Tombol Kembali Presisi & Load More -->
+    <!-- Script Load More -->
     <script>
-        function simpanPosisiDanKembali(event) {
-            event.preventDefault();
-            // Simpan posisi scroll halaman index sebelum meninggalkan jurnal.html (mengambil posisi tombol Jurnal di index atau disimpan dari history sebelumnya)
-            // Karena tombol kembali mengarah ke index.html, kita simpan posisi scroll terakhir user saat membuka jurnal
-            window.location.href = "index.html#jurnal";
-        }
-
         function loadMoreJurnal() {
             const hiddenItems = document.querySelectorAll('.hidden-jurnal');
             hiddenItems.forEach(item => {
