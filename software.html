@@ -23,7 +23,7 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        /* LOADING SCREEN CENTER FIX */
+        /* LOADING SCREEN DUA ARAH (CENTER & SMOOTH) */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -36,7 +36,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateY(0);
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
         #loading-screen.slide-up {
             transform: translateY(-100%);
@@ -46,7 +47,7 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-reveal { animation: contentReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .page-reveal { animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
 <body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-reveal">
@@ -140,12 +141,32 @@
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
 
+    <!-- SCRIPT TRANSISI DUA ARAH -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.classList.add('slide-up');
-            }, 1200);
+            }, 600);
+        });
+
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (!link) return;
+            
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && !href.includes('wa.me') && link.getAttribute('target') !== '_blank') {
+                e.preventDefault();
+                const loader = document.getElementById('loading-screen');
+                if (loader) {
+                    loader.classList.remove('slide-up');
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 900);
+                } else {
+                    window.location.href = href;
+                }
+            }
         });
     </script>
 </body>
