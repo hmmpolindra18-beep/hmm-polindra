@@ -140,9 +140,10 @@
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
 
-    <!-- SCRIPT TRANSISI -->
+    <!-- SCRIPT TRANSISI & RESET POSISI SCROLL -->
     <script>
         window.addEventListener('load', function() {
+            window.scrollTo(0, 0); // Paksa posisi mulai dari paling atas
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.classList.add('slide-up');
