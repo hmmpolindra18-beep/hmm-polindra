@@ -6,7 +6,9 @@
     <title>Himpunan Mahasiswa Mesin POLINDRA</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome buat Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -43,11 +45,14 @@
             transform: translateY(-100%);
         }
 
+        /* Efek Muncul Konten Mengikuti Loading */
         @keyframes contentReveal {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-reveal { animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .page-reveal {
+            animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -55,7 +60,7 @@
 </head>
 <body class="bg-pattern text-slate-300 page-reveal">
 
-    <!-- LOADING SCREEN -->
+    <!-- LOADING SCREEN CURTAIN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-blue-500 text-7xl gear-spin absolute"></i>
@@ -79,22 +84,26 @@
                     </div>
                 </div>
                 
+                <!-- MENU UTAMA + IKON NOTIFIKASI BERDEKATAN -->
                 <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-slate-300">
                     <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
                     <a href="#layanan" class="hover:text-blue-400 transition-colors">Services</a>
                     <a href="#jurnal" class="hover:text-blue-400 transition-colors">Jurnal</a>
                     <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
-                    <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
+                    <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                     
+                    <!-- GARIS PEMBATAS KECIL -->
                     <div class="h-5 w-[1px] bg-slate-700"></div>
 
+                    <!-- TOMBOL LONCENG NOTIFIKASI -->
                     <div class="relative">
                         <button onclick="toggleNotifDropdown()" id="btnNotif" class="relative w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md focus:outline-none">
                             <i class="fa-solid fa-bell text-xs"></i>
                             <span id="notifBadge" class="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
                         </button>
 
+                        <!-- DROPDOWN RIWAYAT NOTIFIKASI -->
                         <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-[200]">
                             <div class="bg-slate-800 px-5 py-3.5 border-b border-slate-700 flex justify-between items-center">
                                 <h3 class="font-heading font-bold text-white text-base tracking-wide flex items-center gap-2">
@@ -102,7 +111,9 @@
                                 </h3>
                                 <span class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2.5 py-0.5 rounded-full border border-blue-500/30">Live Update</span>
                             </div>
+                            
                             <div id="notifListContainer" class="max-h-80 overflow-y-auto divide-y divide-slate-800/80 text-left"></div>
+                            
                             <div class="bg-slate-950 px-4 py-2.5 text-center border-t border-slate-800 flex justify-between items-center">
                                 <span class="text-[11px] text-slate-500 font-medium">HMM POLINDRA &copy; 2026</span>
                                 <button onclick="tambahNotifDemo()" class="text-[10px] text-blue-400 hover:underline font-bold">+ Tes Update Info</button>
@@ -111,6 +122,7 @@
                     </div>
                 </div>
 
+                <!-- MOBILE MENU BUTTON -->
                 <div class="md:hidden flex items-center gap-3">
                     <div class="relative">
                         <button onclick="toggleNotifDropdownMobile()" class="relative w-9 h-9 rounded-full bg-slate-800 border border-slate-600 text-slate-300 flex items-center justify-center">
@@ -130,6 +142,7 @@
             </div>
         </div>
 
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-700/50 backdrop-blur-md absolute w-full shadow-xl">
             <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
                 <a href="#beranda" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Home</a>
@@ -137,7 +150,7 @@
                 <a href="#layanan" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Services</a>
                 <a href="#jurnal" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Jurnal</a>
                 <a href="#galeri" class="mobile-link block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-3 rounded-md font-medium transition-colors">Gallery</a>
-                <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="block text-amber-500 hover:text-amber-300 hover:bg-slate-800 px-3 py-3 rounded-md font-bold transition-colors"><i class="fa-solid fa-store mr-2"></i> HMM Store</a>
+                <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="block text-amber-500 hover:text-amber-300 hover:bg-slate-800 px-3 py-3 rounded-md font-bold transition-colors"><i class="fa-solid fa-store mr-2"></i> HMM Store</a>
             </div>
         </div>
     </nav>
@@ -221,7 +234,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Katalog resmi untuk pemesanan merchandise HMM.</p>
                     </div>
                     <div>
-                        <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
+                        <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
                             Kunjungi Store <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -236,7 +249,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Akses download installer SolidWorks, AutoCAD, dan software teknik lainnya.</p>
                     </div>
                     <div>
-                        <a href="./software.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
+                        <a href="software.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
                             Buka Software <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -251,7 +264,7 @@
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan modul elemen mesin dan video tutorial desain 3D (CAD).</p>
                     </div>
                     <div>
-                        <a href="./modul.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
+                        <a href="modul.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
                             Mulai Belajar <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -278,7 +291,7 @@
                     <span class="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/30 uppercase tracking-widest inline-block mb-4">Academic Publikasi</span>
                     <h3 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Akses Publikasi Ilmiah</h3>
                     <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari mahasiswa serta dosen Teknik Mesin Polindra.</p>
-                    <a href="./jurnal.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
+                    <a href="jurnal.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
                         <i class="fa-solid fa-book-open-reader mr-2"></i> Akses Jurnal Sekarang
                     </a>
                 </div>
@@ -286,7 +299,7 @@
         </div>
     </section>
 
-    <!-- SECTION GALERI -->
+    <!-- SECTION GALERI (MENGGUNAKAN FOTO LOKAL) -->
     <section id="galeri" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
@@ -294,29 +307,29 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 reveal">
-                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-                    <img src="tm.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <img src="tm.jpeg" alt="Technical Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                         <span class="text-white font-bold text-lg drop-shadow-md">Technical Meeting</span>
                         <span class="text-blue-300 text-xs">Persiapan Maba 2026</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-                    <img src="osprod.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <img src="osprod.jpeg" alt="OSPROD" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                         <span class="text-white font-bold text-lg drop-shadow-md">OSPROD 2026</span>
                         <span class="text-blue-300 text-xs">Orientasi Prodi Mesin</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-                    <img src="wiragora.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <img src="wiragora.jpeg" alt="Wiragora EV" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                         <span class="text-white font-bold text-lg drop-shadow-md">Wiragora EV</span>
                         <span class="text-blue-300 text-xs">Tim Mobil Listrik</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg">
-                    <img src="gokart.jpeg" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <img src="gokart.jpeg" alt="Gokart Team" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                         <span class="text-white font-bold text-lg drop-shadow-md">Gokart Team</span>
                         <span class="text-blue-300 text-xs">Tim Riset Otomotif</span>
@@ -364,7 +377,7 @@
                  <h3 class="font-heading font-bold text-white text-lg mb-6 border-b border-slate-700 inline-block pb-2 tracking-wide">Tautan Cepat</h3>
                  <ul class="space-y-3 text-sm text-slate-400">
                      <li><a href="#beranda" class="hover:text-blue-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Beranda Utama</a></li>
-                     <li><a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="hover:text-amber-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Katalog HMM Store</a></li>
+                     <li><a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="hover:text-amber-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Katalog HMM Store</a></li>
                      <li><a href="https://forms.gle/uxnCgUCRcDYK7LQb9" class="hover:text-purple-400 transition-colors flex items-center"><i class="fa-solid fa-angle-right mr-2 text-[10px]"></i> Layanan Aspirasi</a></li>
                  </ul>
             </div>
@@ -376,29 +389,26 @@
 
     <!-- SCRIPT TRANSISI DUA ARAH -->
     <script>
-        // Animasi Masuk (Tirai Terangkat)
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.classList.add('slide-up');
-            }, 600); // Waktu jeda pas agar tidak terlalu cepat/lambat
+            }, 600);
         });
 
-        // Animasi Keluar/Pindah Halaman (Tirai Menurun Kembali)
         document.addEventListener('click', function(e) {
             const link = e.target.closest('a');
             if (!link) return;
             
             const href = link.getAttribute('href');
-            // Cek apakah link internal (pindah halaman .html)
             if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && !href.includes('wa.me') && link.getAttribute('target') !== '_blank') {
                 e.preventDefault();
                 const loader = document.getElementById('loading-screen');
                 if (loader) {
-                    loader.classList.remove('slide-up'); // Turunkan tirai menutup layar
+                    loader.classList.remove('slide-up');
                     setTimeout(function() {
                         window.location.href = href;
-                    }, 900); // Tunggu tirai turun penuh sebelum pindah
+                    }, 900);
                 } else {
                     window.location.href = href;
                 }
