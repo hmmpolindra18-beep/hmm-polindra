@@ -44,7 +44,8 @@
                     </div>
                 </div>
                 <div>
-                    <a href="index.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
+                    <!-- Tombol Kembali dengan sessionStorage agar posisi scroll index tetap aman -->
+                    <a href="index.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Kembali
                     </a>
                 </div>
@@ -55,7 +56,7 @@
     <!-- CONTENT -->
     <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
         <div class="text-center mb-14">
-            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/30 uppercase tracking-widest">Pusat Referensi Ilmiah</span>
+            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20 uppercase tracking-widest">Pusat Referensi Ilmiah</span>
             <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Publikasi Teknik Mesin</h2>
             <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Kumpulan artikel dan jurnal penelitian seputar desain mekanikal, manufaktur CNC, material komposit, hingga konversi energi untuk referensi tugas akhir.</p>
         </div>
@@ -274,7 +275,7 @@
         <!-- Tombol Load More -->
         <div class="text-center mt-12" id="btn-load-more-container">
             <button onclick="loadMoreJurnal()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white font-medium py-3 px-8 rounded-full transition-all shadow-md">
-                Muat Lebih Lebih Jurnal <i class="fa-solid fa-rotate-right ml-2"></i>
+                Muat Lebih Banyak Jurnal <i class="fa-solid fa-rotate-right ml-2"></i>
             </button>
         </div>
     </main>
