@@ -65,9 +65,9 @@
                     <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
                     <a href="#layanan" class="hover:text-blue-400 transition-colors">Services</a>
-                    <!-- Navigasi Baru Untuk Section Jurnal -->
                     <a href="#jurnal" class="hover:text-blue-400 transition-colors">Jurnal</a>
                     <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
+                    <!-- Simpan posisi scroll saat ke HMM Store -->
                     <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                 </div>
 
@@ -213,7 +213,7 @@
         </div>
     </section>
 
-    <!-- SECTION JURNAL & ARTIKEL MESIN (SECTION BARU TERSENDIRI) -->
+    <!-- SECTION JURNAL & ARTIKEL MESIN -->
     <section id="jurnal" class="py-24 relative z-10 border-b border-slate-800/50 bg-[#0f172a]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
@@ -230,8 +230,9 @@
                 <div class="w-full md:w-2/3 text-center md:text-left">
                     <span class="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/30 uppercase tracking-widest inline-block mb-4">Academic Publikasi</span>
                     <h3 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Akses Publikasi Ilmiah</h3>
-                    <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari mahasiswa serta dosen Teknik Mesin Polindra. Tersedia untuk diakses dan diunduh secara gratis sebagai referensi tugas akhir.</p>
-                    <a href="./jurnal.html" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
+                    <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari mahasiswa serta dosen Teknik Mesin Polindra.</p>
+                    <!-- Tambah sessionStorage agar posisi scroll tersimpan saat pindah ke jurnal.html -->
+                    <a href="./jurnal.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
                         <i class="fa-solid fa-book-open-reader mr-2"></i> Akses Jurnal Sekarang
                     </a>
                 </div>
@@ -327,8 +328,8 @@
         </div>
     </footer>
 
-    <!-- TOAST NOTIFIKASI -->
-    <div id="toastNotif" class="fixed bottom-5 right-5 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_5px_20px_rgba(59,130,246,0.5)] p-4 transform translate-y-full opacity-0 transition-all duration-500 z-[120] flex items-start">
+    <!-- TOAST NOTIFIKASI (Menggunakan position: fixed agar otomatis mengambang & ikut ngikutin layar saat di-scroll) -->
+    <div id="toastNotif" class="fixed bottom-5 right-5 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_5px_25px_rgba(59,130,246,0.6)] p-4 transform translate-y-full opacity-0 transition-all duration-500 z-[150] flex items-start">
         <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse"></i>
         <div class="flex-1">
             <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
@@ -339,7 +340,7 @@
 
     <!-- SCRIPT -->
     <script>
-        // Auto-Restore Posisi Scroll
+        // Auto-Restore Posisi Scroll (Supaya pas kembali dari jurnal, store, dll posisi scroll tetep pas)
         document.addEventListener("DOMContentLoaded", function() {
             const savedPosition = sessionStorage.getItem('scrollPosition');
             if (savedPosition !== null) {
@@ -388,6 +389,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
+        // Toast Notifikasi Muncul Otomatis
         setTimeout(() => {
             const toast = document.getElementById('toastNotif');
             toast.classList.remove('translate-y-full', 'opacity-0');
