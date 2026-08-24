@@ -364,14 +364,13 @@
         </div>
     </footer>
 
-    <!-- SCRIPT SISTEM NOTIFIKASI REALTIME & WAKTU DINAMIS -->
+    <!-- SCRIPT SISTEM NOTIFIKASI REALTIME & AUTO-UPDATE TIAP 1 MENIT -->
     <script>
-        // Data Notifikasi dengan Timestamp Asli agar Waktu Terhitung Secara Dinamis
         let daftarNotifikasi = [
             {
                 judul: "Update Jurnal & Artikel",
                 pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.",
-                timestamp: Date.now() - (1000 * 60 * 10), // 10 menit yang lalu
+                timestamp: Date.now() - (1000 * 60 * 35), // 35 menit yang lalu
                 icon: "fa-book-open-reader",
                 warna: "indigo"
             },
@@ -385,7 +384,7 @@
             {
                 judul: "HMM Store Ready",
                 pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.",
-                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 7), // 7 hari yang lalu
+                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 6), // 6 hari yang lalu
                 icon: "fa-store",
                 warna: "amber"
             }
@@ -473,6 +472,11 @@
             renderNotifikasi();
         });
 
+        // AUTO-UPDATE LIVE TIAP 1 MENIT (60000 ms) DI BACKGROUND
+        setInterval(function() {
+            renderNotifikasi();
+        }, 60000);
+
         function toggleNotifDropdown() {
             const dropdown = document.getElementById('notifDropdown');
             const badge = document.getElementById('notifBadge');
@@ -480,12 +484,16 @@
             dropdown.classList.toggle('hidden');
             if (!dropdown.classList.contains('hidden')) {
                 if(badge) badge.style.display = 'none';
+                renderNotifikasi();
             }
         }
 
         function toggleNotifDropdownMobile() {
             const dropdown = document.getElementById('notifDropdownMobile');
             dropdown.classList.toggle('hidden');
+            if (!dropdown.classList.contains('hidden')) {
+                renderNotifikasi();
+            }
         }
 
         window.addEventListener('click', function(e) {
