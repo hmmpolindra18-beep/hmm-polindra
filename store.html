@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HMM Store - HMM POLINDRA</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,23 +23,12 @@
         }
 
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 99999;
-            background-color: #020617;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(0);
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 99999; background-color: #020617;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transform: translateY(0); transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        #loading-screen.slide-up {
-            transform: translateY(-100%);
-        }
+        #loading-screen.slide-up { transform: translateY(-100%); }
 
         @keyframes contentReveal {
             from { opacity: 0; transform: translateY(30px); }
@@ -49,9 +37,8 @@
         .page-reveal { animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-reveal">
+<body class="bg-pattern text-slate-300">
 
-    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-amber-500 text-7xl gear-spin absolute"></i>
@@ -61,101 +48,98 @@
         <p class="text-xs text-amber-400 font-bold tracking-widest mt-2 uppercase animate-pulse">Menyiapkan Katalog Merchandise...</p>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white rounded-full overflow-hidden p-0.5 border-2 border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]">
-                        <img src="logohmm.png" alt="Logo HMM" class="w-full h-full object-contain">
+    <div class="page-reveal min-h-screen flex flex-col justify-between">
+        <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-white rounded-full overflow-hidden p-0.5 border-2 border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]">
+                            <img src="logohmm.png" alt="Logo HMM" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h1 class="font-heading font-bold text-xl text-white tracking-wider leading-tight">HMM STORE</h1>
+                            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">Katalog Resmi Atribut</p>
+                        </div>
                     </div>
                     <div>
-                        <h1 class="font-heading font-bold text-xl text-white tracking-wider leading-tight">HMM STORE</h1>
-                        <p class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">Katalog Resmi Atribut</p>
+                        <a href="index.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
+                            <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
+                        </a>
                     </div>
-                </div>
-                <div>
-                    <a href="index.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-4 py-2 rounded-full text-sm transition-all shadow-md flex items-center">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
-                    </a>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- CONTENT -->
-    <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
-        <div class="text-center mb-14">
-            <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase tracking-widest">Merchandise Eksklusif</span>
-            <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Koleksi Atribut HMM</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Dapatkan atribut resmi kebanggaan Teknik Mesin Polindra.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
-                <div>
-                    <div class="h-64 bg-slate-900 overflow-hidden relative">
-                        <img src="baju.jpeg" alt="Baju / PDH HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+        <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
+            <div class="text-center mb-14">
+                <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase tracking-widest">Merchandise Eksklusif</span>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Koleksi Atribut HMM</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Dapatkan atribut resmi kebanggaan Teknik Mesin Polindra.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 bg-slate-900 overflow-hidden relative">
+                            <img src="baju.jpeg" alt="Baju / PDH HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading text-xl font-bold text-white mb-2">PDH / Baju Resmi HMM</h3>
+                            <p class="text-slate-400 text-sm mb-4">Kemeja dinas harian bordir lengkap kualitas premium, bahan american drill.</p>
+                            <span class="text-amber-400 font-bold text-lg">Rp 150.000</span>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-heading text-xl font-bold text-white mb-2">PDH / Baju Resmi HMM</h3>
-                        <p class="text-slate-400 text-sm mb-4">Kemeja dinas harian bordir lengkap kualitas premium, bahan american drill.</p>
-                        <span class="text-amber-400 font-bold text-lg">Rp 150.000</span>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Baju/PDH%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
+                        </a>
                     </div>
                 </div>
-                <div class="p-6 pt-0">
-                    <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Baju/PDH%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
-                        <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
-                    </a>
+                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 bg-slate-900 overflow-hidden relative">
+                            <img src="gelang.jpeg" alt="Gelang HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading text-xl font-bold text-white mb-2">Gelang Solidaritas HMM</h3>
+                            <p class="text-slate-400 text-sm mb-4">Gelang eksklusif simbol solidaritas mahasiswa Teknik Mesin Polindra.</p>
+                            <span class="text-amber-400 font-bold text-lg">Rp 15.000</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Gelang%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 bg-slate-900 overflow-hidden relative">
+                            <img src="stiker.jpeg" alt="Stiker HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading text-xl font-bold text-white mb-2">Paket Stiker Eksklusif HMM</h3>
+                            <p class="text-slate-400 text-sm mb-6">Stiker vinyl anti air tahan lama untuk helm, laptop, dan kendaraan.</p>
+                            <span class="text-amber-400 font-bold text-lg">Rp 10.000</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Stiker%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
+        </main>
 
-            <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
-                <div>
-                    <div class="h-64 bg-slate-900 overflow-hidden relative">
-                        <img src="gelang.jpeg" alt="Gelang HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading text-xl font-bold text-white mb-2">Gelang Solidaritas HMM</h3>
-                        <p class="text-slate-400 text-sm mb-4">Gelang eksklusif simbol solidaritas mahasiswa Teknik Mesin Polindra.</p>
-                        <span class="text-amber-400 font-bold text-lg">Rp 15.000</span>
-                    </div>
-                </div>
-                <div class="p-6 pt-0">
-                    <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Gelang%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
-                        <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
+        <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+            &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
+        </footer>
+    </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/60 transition-all group flex flex-col justify-between">
-                <div>
-                    <div class="h-64 bg-slate-900 overflow-hidden relative">
-                        <img src="stiker.jpeg" alt="Stiker HMM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Ready Stock</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading text-xl font-bold text-white mb-2">Paket Stiker Eksklusif HMM</h3>
-                        <p class="text-slate-400 text-sm mb-6">Stiker vinyl anti air tahan lama untuk helm, laptop, dan kendaraan.</p>
-                        <span class="text-amber-400 font-bold text-lg">Rp 10.000</span>
-                    </div>
-                </div>
-                <div class="p-6 pt-0">
-                    <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20pesan%20Stiker%20HMM" target="_blank" class="w-full block text-center bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors shadow-md">
-                        <i class="fa-brands fa-whatsapp mr-2"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
-        &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
-    </footer>
-
-    <!-- SCRIPT TRANSISI & RESET POSISI SCROLL -->
+    <!-- SCRIPT NORMAL -->
     <script>
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
@@ -163,25 +147,6 @@
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.classList.add('slide-up');
             }, 600);
-        });
-
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a');
-            if (!link) return;
-            
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && !href.includes('wa.me') && link.getAttribute('target') !== '_blank') {
-                e.preventDefault();
-                const loader = document.getElementById('loading-screen');
-                if (loader) {
-                    loader.classList.remove('slide-up');
-                    setTimeout(function() {
-                        window.location.href = href;
-                    }, 900);
-                } else {
-                    window.location.href = href;
-                }
-            }
         });
     </script>
 </body>
