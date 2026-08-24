@@ -23,7 +23,7 @@
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
-        .font-heading { font-family: 'Rajdhani', sans-serif; }
+        .font-heading { font-heading: 'Rajdhani', sans-serif; }
         
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .gear-spin { animation: spin-slow 45s linear infinite; }
@@ -61,98 +61,65 @@
                     </div>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                <!-- MENU UTAMA + IKON NOTIFIKASI BERDEKATAN -->
+                <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-slate-300">
                     <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
                     <a href="#layanan" class="hover:text-blue-400 transition-colors">Services</a>
                     <a href="#jurnal" class="hover:text-blue-400 transition-colors">Jurnal</a>
                     <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
                     <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
-                </div>
+                    
+                    <!-- GARIS PEMBATAS KECIL -->
+                    <div class="h-5 w-[1px] bg-slate-700"></div>
 
-                <!-- TOMBOL LONCENG NOTIFIKASI DI NAVBAR -->
-                <div class="flex items-center gap-4">
+                    <!-- TOMBOL LONCENG NOTIFIKASI REALTIME (Nempel rapi di sebelah menu) -->
                     <div class="relative">
-                        <button onclick="toggleNotifDropdown()" id="btnNotif" class="relative w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md focus:outline-none">
-                            <i class="fa-solid fa-bell text-sm"></i>
-                            <!-- Badge Indikator Merah -->
-                            <span id="notifBadge" class="absolute top-1 right-1 w-3 h-3 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
+                        <button onclick="toggleNotifDropdown()" id="btnNotif" class="relative w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md focus:outline-none">
+                            <i class="fa-solid fa-bell text-xs"></i>
+                            <!-- Badge Indikator Realtime -->
+                            <span id="notifBadge" class="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
                         </button>
 
-                        <!-- DROPDOWN RIWAYAT NOTIFIKASI -->
+                        <!-- DROPDOWN RIWAYAT NOTIFIKASI REALTIME -->
                         <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-[200] transform origin-top-right transition-all duration-300">
                             <div class="bg-slate-800 px-5 py-3.5 border-b border-slate-700 flex justify-between items-center">
                                 <h3 class="font-heading font-bold text-white text-base tracking-wide flex items-center gap-2">
                                     <i class="fa-solid fa-bell text-blue-400"></i> Pusat Informasi & Update
                                 </h3>
-                                <span class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2.5 py-0.5 rounded-full border border-blue-500/30">Terbaru</span>
+                                <span class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2.5 py-0.5 rounded-full border border-blue-500/30">Live Update</span>
                             </div>
                             
-                            <!-- Daftar Riwayat Notifikasi -->
-                            <div class="max-h-80 overflow-y-auto divide-y divide-slate-800/80 text-left">
-                                
-                                <!-- Item 1 -->
-                                <div class="p-4 hover:bg-slate-800/50 transition-colors">
-                                    <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fa-solid fa-book-open-reader text-xs"></i>
-                                        </div>
-                                        <div>
-                                            <div class="flex items-center justify-between">
-                                                <h4 class="text-xs font-bold text-white">Update Jurnal & Artikel</h4>
-                                                <span class="text-[10px] text-slate-500">Baru saja</span>
-                                            </div>
-                                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Item 2 -->
-                                <div class="p-4 hover:bg-slate-800/50 transition-colors">
-                                    <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fa-solid fa-images text-xs"></i>
-                                        </div>
-                                        <div>
-                                            <div class="flex items-center justify-between">
-                                                <h4 class="text-xs font-bold text-white">Dokumentasi Galeri</h4>
-                                                <span class="text-[10px] text-slate-500">2 hari lalu</span>
-                                            </div>
-                                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah ke Google Drive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Item 3 -->
-                                <div class="p-4 hover:bg-slate-800/50 transition-colors">
-                                    <div class="flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fa-solid fa-store text-xs"></i>
-                                        </div>
-                                        <div>
-                                            <div class="flex items-center justify-between">
-                                                <h4 class="text-xs font-bold text-white">HMM Store Ready</h4>
-                                                <span class="text-[10px] text-slate-500">Minggu lalu</span>
-                                            </div>
-                                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <!-- Container Daftar Notifikasi Realtime (Digenerate via JavaScript) -->
+                            <div id="notifListContainer" class="max-h-80 overflow-y-auto divide-y divide-slate-800/80 text-left">
+                                <!-- Data akan masuk secara realtime di sini -->
                             </div>
                             
-                            <div class="bg-slate-950 px-4 py-2.5 text-center border-t border-slate-800">
+                            <div class="bg-slate-950 px-4 py-2.5 text-center border-t border-slate-800 flex justify-between items-center">
                                 <span class="text-[11px] text-slate-500 font-medium">HMM POLINDRA &copy; 2026</span>
+                                <button onclick="tambahNotifDemo()" class="text-[10px] text-blue-400 hover:underline font-bold">+ Tes Update Realtime</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Tombol Hamburger Mobile -->
-                    <div class="md:hidden flex items-center">
-                        <button id="btn-mobile-menu" class="text-slate-300 hover:text-blue-400 focus:outline-none text-2xl transition-transform duration-300">
-                            <i id="icon-mobile-menu" class="fa-solid fa-bars"></i>
+                <!-- MOBILE MENU BUTTON (Tombol Lonceng Ikut Muncul di Mobile juga) -->
+                <div class="md:hidden flex items-center gap-3">
+                    <div class="relative">
+                        <button onclick="toggleNotifDropdownMobile()" class="relative w-9 h-9 rounded-full bg-slate-800 border border-slate-600 text-slate-300 flex items-center justify-center">
+                            <i class="fa-solid fa-bell text-xs"></i>
+                            <span class="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
                         </button>
+                        <!-- Mobile Dropdown Notif -->
+                        <div id="notifDropdownMobile" class="hidden absolute right-0 mt-3 w-72 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden z-[200]">
+                            <div class="bg-slate-800 px-4 py-3 border-b border-slate-700 font-bold text-white text-sm">Pusat Informasi</div>
+                            <div id="notifListContainerMobile" class="max-h-60 overflow-y-auto divide-y divide-slate-800 text-left text-xs"></div>
+                        </div>
                     </div>
+
+                    <button id="btn-mobile-menu" class="text-slate-300 hover:text-blue-400 focus:outline-none text-2xl transition-transform duration-300">
+                        <i id="icon-mobile-menu" class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -406,30 +373,109 @@
         </div>
     </footer>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT SISTEM NOTIFIKASI REALTIME & RENDER -->
     <script>
-        // Auto-Restore Posisi Scroll
+        // Data Notifikasi Realtime (Bisa ditambah otomatis secara dinamis atau disimpan di localStorage)
+        let daftarNotifikasi = [
+            {
+                judul: "Update Jurnal & Artikel",
+                pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.",
+                waktu: "Baru saja",
+                icon: "fa-book-open-reader",
+                warna: "indigo"
+            },
+            {
+                judul: "Dokumentasi Galeri",
+                pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah ke Google Drive.",
+                waktu: "2 hari lalu",
+                icon: "fa-images",
+                warna: "blue"
+            },
+            {
+                judul: "HMM Store Ready",
+                pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.",
+                waktu: "Minggu lalu",
+                icon: "fa-store",
+                warna: "amber"
+            }
+        ];
+
+        // Render Notifikasi ke HTML secara Realtime
+        function renderNotifikasi() {
+            const container = document.getElementById('notifListContainer');
+            const containerMobile = document.getElementById('notifListContainerMobile');
+            
+            let htmlContent = '';
+            daftarNotifikasi.forEach(item => {
+                htmlContent += `
+                    <div class="p-4 hover:bg-slate-800/50 transition-colors">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-${item.warna}-500/20 text-${item.warna}-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid ${item.icon} text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-xs font-bold text-white">${item.judul}</h4>
+                                    <span class="text-[10px] text-slate-500">${item.waktu}</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">${item.pesan}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if(container) container.innerHTML = htmlContent;
+            if(containerMobile) containerMobile.innerHTML = htmlContent;
+        }
+
+        // Fungsi Simulasi Tambah Info Realtime (Bisa dipanggil otomatis/manual)
+        function tambahNotifDemo() {
+            daftarNotifikasi.unshift({
+                judul: "Info Terbaru Realtime!",
+                pesan: "Ada pembaruan sistem database dan modul praktikum baru di halaman Modul Edukasi.",
+                waktu: "Baru saja",
+                icon: "fa-bell",
+                warna: "rose"
+            });
+            renderNotifikasi();
+            
+            // Nyalakan ulang badge merah
+            const badge = document.getElementById('notifBadge');
+            if(badge) badge.style.display = 'block';
+            alert("Berhasil menambah info update baru secara realtime!");
+        }
+
+        // Jalankan saat halaman dimuat
         document.addEventListener("DOMContentLoaded", function() {
+            // Restore Scroll Position
             const savedPosition = sessionStorage.getItem('scrollPosition');
             if (savedPosition !== null) {
                 window.scrollTo(0, parseInt(savedPosition));
                 sessionStorage.removeItem('scrollPosition');
             }
+
+            // Render Notif
+            renderNotifikasi();
         });
 
-        // Toggle Dropdown Notifikasi & Hilangkan Badge Merah Saat Diklik
+        // Toggle Dropdown Notifikasi
         function toggleNotifDropdown() {
             const dropdown = document.getElementById('notifDropdown');
             const badge = document.getElementById('notifBadge');
             
             dropdown.classList.toggle('hidden');
             if (!dropdown.classList.contains('hidden')) {
-                // Hilangkan titik merah animasi saat notifikasi dibuka
                 if(badge) badge.style.display = 'none';
             }
         }
 
-        // Tutup dropdown notifikasi jika klik di luar area lonceng
+        function toggleNotifDropdownMobile() {
+            const dropdown = document.getElementById('notifDropdownMobile');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Tutup dropdown jika klik di luar area
         window.addEventListener('click', function(e) {
             const btn = document.getElementById('btnNotif');
             const dropdown = document.getElementById('notifDropdown');
