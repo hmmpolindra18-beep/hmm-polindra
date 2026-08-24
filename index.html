@@ -60,7 +60,7 @@
 </head>
 <body class="bg-pattern text-slate-300">
 
-    <!-- LOADING SCREEN CURTAIN (DI LUAR WRAPPER AGAR 100% FULL LAYAR) -->
+    <!-- LOADING SCREEN CURTAIN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-blue-500 text-7xl gear-spin absolute"></i>
@@ -390,15 +390,24 @@
         </footer>
     </div>
 
-    <!-- SCRIPT TRANSISI DUA ARAH & RESTORE SCROLL INSTANT -->
+    <!-- SCRIPT LOGIKA LOADING SCREEN & RESTORE SCROLL -->
     <script>
-        const savedPosition = sessionStorage.getItem('scrollPosition');
-        const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
-
         document.addEventListener("DOMContentLoaded", function() {
             const loader = document.getElementById('loading-screen');
+            const navEntries = performance.getEntriesByType('navigation');
+            const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
 
-            if (scrollBackJurnal === 'true') {
+            // Jika halaman di-refresh, reset session agar loading screen muncul kembali secara normal
+            if (isReload) {
+                sessionStorage.removeItem('scrollPosition');
+                localStorage.removeItem('scrollBackToJurnal');
+            }
+
+            const savedPosition = sessionStorage.getItem('scrollPosition');
+            const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
+
+            // Jika kembali dari jurnal, scroll ke section jurnal tanpa loading screen
+            if (!isReload && scrollBackJurnal === 'true') {
                 localStorage.removeItem('scrollBackToJurnal');
                 if (loader) {
                     loader.style.transition = 'none';
@@ -412,7 +421,8 @@
                 return;
             }
 
-            if (savedPosition !== null) {
+            // Jika kembali dari halaman lain (Store, Modul, Software), kembalikan posisi scroll tanpa loading screen
+            if (!isReload && savedPosition !== null) {
                 if (loader) {
                     loader.style.transition = 'none';
                     loader.classList.add('slide-up');
@@ -423,7 +433,7 @@
                 return;
             }
 
-            // Load normal (pertama kali buka / refresh)
+            // Kondisi Masuk Pertama Kali ATAU di-Refresh -> Tampilkan Loading Screen Normal
             window.addEventListener('load', function() {
                 setTimeout(function() {
                     if (loader) loader.classList.add('slide-up');
@@ -432,6 +442,7 @@
             renderNotifikasi();
         });
 
+        // Intervensi klik menu untuk menyimpan posisi scroll sebelum pindah ke subpage
         document.addEventListener('click', function(e) {
             const link = e.target.closest('a');
             if (!link) return;
@@ -486,7 +497,7 @@
             renderNotifikasi();
             const badge = document.getElementById('notifBadge');
             if(badge) badge.style.display = 'block';
-            alert("Berhasil menambah info update new!");
+            alert("Berhasil menambah info update baru!");
         }
 
         function toggleNotifDropdown() {
