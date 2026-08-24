@@ -364,38 +364,57 @@
         </div>
     </footer>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT SISTEM NOTIFIKASI REALTIME & WAKTU DINAMIS -->
     <script>
+        // Data Notifikasi dengan Timestamp Asli agar Waktu Terhitung Secara Dinamis
         let daftarNotifikasi = [
             {
                 judul: "Update Jurnal & Artikel",
                 pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.",
-                waktu: "Baru saja",
+                timestamp: Date.now() - (1000 * 60 * 10), // 10 menit yang lalu
                 icon: "fa-book-open-reader",
                 warna: "indigo"
             },
             {
                 judul: "Dokumentasi Galeri",
                 pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah ke Google Drive.",
-                waktu: "2 hari lalu",
+                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 2), // 2 hari yang lalu
                 icon: "fa-images",
                 warna: "blue"
             },
             {
                 judul: "HMM Store Ready",
                 pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.",
-                waktu: "Minggu lalu",
+                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 7), // 7 hari yang lalu
                 icon: "fa-store",
                 warna: "amber"
             }
         ];
 
+        // Fungsi Kalkulator Waktu Relatif Dinamis
+        function hitungWaktuLalu(timestamp) {
+            const selisihMs = Date.now() - timestamp;
+            const detik = Math.floor(selisihMs / 1000);
+            const menit = Math.floor(detik / 60);
+            const jam = Math.floor(menit / 60);
+            const hari = Math.floor(jam / 24);
+            const minggu = Math.floor(hari / 7);
+
+            if (detik < 60) return "Baru saja";
+            if (menit < 60) return `${menit} menit lalu`;
+            if (jam < 24) return `${jam} jam lalu`;
+            if (hari < 7) return `${hari} hari lalu`;
+            return `${minggu} minggu lalu`;
+        }
+
+        // Render Notifikasi ke HTML secara Dinamis
         function renderNotifikasi() {
             const container = document.getElementById('notifListContainer');
             const containerMobile = document.getElementById('notifListContainerMobile');
             
             let htmlContent = '';
             daftarNotifikasi.forEach(item => {
+                const waktuDinamis = hitungWaktuLalu(item.timestamp);
                 htmlContent += `
                     <div class="p-4 hover:bg-slate-800/50 transition-colors">
                         <div class="flex items-start gap-3">
@@ -405,7 +424,7 @@
                             <div>
                                 <div class="flex items-center justify-between">
                                     <h4 class="text-xs font-bold text-white">${item.judul}</h4>
-                                    <span class="text-[10px] text-slate-500">${item.waktu}</span>
+                                    <span class="text-[10px] text-slate-500">${waktuDinamis}</span>
                                 </div>
                                 <p class="text-xs text-slate-400 mt-1 leading-relaxed">${item.pesan}</p>
                             </div>
@@ -418,15 +437,17 @@
             if(containerMobile) containerMobile.innerHTML = htmlContent;
         }
 
+        // Fungsi Simulasi Tambah Info Realtime
         function tambahNotifDemo() {
             daftarNotifikasi.unshift({
                 judul: "Info Terbaru Realtime!",
                 pesan: "Ada pembaruan sistem database dan modul praktikum baru di halaman Modul Edukasi.",
-                waktu: "Baru saja",
+                timestamp: Date.now(), // Waktu sekarang (Baru saja)
                 icon: "fa-bell",
                 warna: "rose"
             });
             renderNotifikasi();
+            
             const badge = document.getElementById('notifBadge');
             if(badge) badge.style.display = 'block';
             alert("Berhasil menambah info update baru secara realtime!");
