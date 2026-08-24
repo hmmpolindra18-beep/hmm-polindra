@@ -387,13 +387,47 @@
         </div>
     </footer>
 
-    <!-- SCRIPT TRANSISI DUA ARAH -->
+    <!-- SCRIPT TRANSISI DUA ARAH & RESTORE SCROLL INSTANT -->
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loader = document.getElementById('loading-screen');
-                if (loader) loader.classList.add('slide-up');
-            }, 600);
+        // Cek apakah halaman dimuat karena kembali dari subpage (Store, Modul, Software, Jurnal)
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const loader = document.getElementById('loading-screen');
+
+            if (scrollBackJurnal === 'true') {
+                localStorage.removeItem('scrollBackToJurnal');
+                if (loader) {
+                    loader.style.transition = 'none'; // Matikan animasi tirai agar tidak dobel
+                    loader.classList.add('slide-up');
+                }
+                const jurnalSection = document.getElementById('jurnal');
+                if (jurnalSection) {
+                    jurnalSection.scrollIntoView({ behavior: 'instant' });
+                }
+                renderNotifikasi();
+                return;
+            }
+
+            if (savedPosition !== null) {
+                if (loader) {
+                    loader.style.transition = 'none'; // Matikan animasi tirai agar tidak kedip dobel
+                    loader.classList.add('slide-up');
+                }
+                window.scrollTo({ top: parseInt(savedPosition), behavior: 'instant' }); // Langsung ke posisi tanpa animasi scroll cepat
+                sessionStorage.removeItem('scrollPosition');
+                renderNotifikasi();
+                return;
+            }
+
+            // Load normal (pertama kali buka / refresh)
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    if (loader) loader.classList.add('slide-up');
+                }, 600);
+            });
+            renderNotifikasi();
         });
 
         document.addEventListener('click', function(e) {
@@ -405,6 +439,7 @@
                 e.preventDefault();
                 const loader = document.getElementById('loading-screen');
                 if (loader) {
+                    loader.style.transition = 'transform 1s cubic-bezier(0.77, 0, 0.175, 1)';
                     loader.classList.remove('slide-up');
                     setTimeout(function() {
                         window.location.href = href;
@@ -451,24 +486,6 @@
             if(badge) badge.style.display = 'block';
             alert("Berhasil menambah info update baru!");
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem('scrollBackToJurnal') === 'true') {
-                localStorage.removeItem('scrollBackToJurnal');
-                const jurnalSection = document.getElementById('jurnal');
-                if (jurnalSection) {
-                    jurnalSection.scrollIntoView({ behavior: 'instant' });
-                    renderNotifikasi();
-                    return;
-                }
-            }
-            const savedPosition = sessionStorage.getItem('scrollPosition');
-            if (savedPosition !== null) {
-                window.scrollTo(0, parseInt(savedPosition));
-                sessionStorage.removeItem('scrollPosition');
-            }
-            renderNotifikasi();
-        });
 
         function toggleNotifDropdown() {
             const dropdown = document.getElementById('notifDropdown');
