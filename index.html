@@ -73,7 +73,7 @@
                     <!-- GARIS PEMBATAS KECIL -->
                     <div class="h-5 w-[1px] bg-slate-700"></div>
 
-                    <!-- TOMBOL LONCENG NOTIFIKASI REALTIME -->
+                    <!-- TOMBOL LONCENG NOTIFIKASI -->
                     <div class="relative">
                         <button onclick="toggleNotifDropdown()" id="btnNotif" class="relative w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-md focus:outline-none">
                             <i class="fa-solid fa-bell text-xs"></i>
@@ -93,7 +93,7 @@
                             
                             <div class="bg-slate-950 px-4 py-2.5 text-center border-t border-slate-800 flex justify-between items-center">
                                 <span class="text-[11px] text-slate-500 font-medium">HMM POLINDRA &copy; 2026</span>
-                                <button onclick="tambahNotifDemo()" class="text-[10px] text-blue-400 hover:underline font-bold">+ Tes Update Realtime</button>
+                                <button onclick="tambahNotifDemo()" class="text-[10px] text-blue-400 hover:underline font-bold">+ Tes Update Info</button>
                             </div>
                         </div>
                     </div>
@@ -364,56 +364,36 @@
         </div>
     </footer>
 
-    <!-- SCRIPT SISTEM NOTIFIKASI REALTIME & AUTO-UPDATE TIAP 1 MENIT -->
+    <!-- SCRIPT SISTEM NOTIFIKASI BERSIH (TANPA KETERANGAN WAKTU) -->
     <script>
         let daftarNotifikasi = [
             {
                 judul: "Update Jurnal & Artikel",
                 pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.",
-                timestamp: Date.now() - (1000 * 60 * 35), // 35 menit yang lalu
                 icon: "fa-book-open-reader",
                 warna: "indigo"
             },
             {
                 judul: "Dokumentasi Galeri",
                 pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah ke Google Drive.",
-                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 2), // 2 hari yang lalu
                 icon: "fa-images",
                 warna: "blue"
             },
             {
                 judul: "HMM Store Ready",
                 pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.",
-                timestamp: Date.now() - (1000 * 60 * 60 * 24 * 6), // 6 hari yang lalu
                 icon: "fa-store",
                 warna: "amber"
             }
         ];
 
-        // Fungsi Kalkulator Waktu Relatif Dinamis
-        function hitungWaktuLalu(timestamp) {
-            const selisihMs = Date.now() - timestamp;
-            const detik = Math.floor(selisihMs / 1000);
-            const menit = Math.floor(detik / 60);
-            const jam = Math.floor(menit / 60);
-            const hari = Math.floor(jam / 24);
-            const minggu = Math.floor(hari / 7);
-
-            if (detik < 60) return "Baru saja";
-            if (menit < 60) return `${menit} menit lalu`;
-            if (jam < 24) return `${jam} jam lalu`;
-            if (hari < 7) return `${hari} hari lalu`;
-            return `${minggu} minggu lalu`;
-        }
-
-        // Render Notifikasi ke HTML secara Dinamis
+        // Render Notifikasi ke HTML
         function renderNotifikasi() {
             const container = document.getElementById('notifListContainer');
             const containerMobile = document.getElementById('notifListContainerMobile');
             
             let htmlContent = '';
             daftarNotifikasi.forEach(item => {
-                const waktuDinamis = hitungWaktuLalu(item.timestamp);
                 htmlContent += `
                     <div class="p-4 hover:bg-slate-800/50 transition-colors">
                         <div class="flex items-start gap-3">
@@ -421,10 +401,7 @@
                                 <i class="fa-solid ${item.icon} text-xs"></i>
                             </div>
                             <div>
-                                <div class="flex items-center justify-between">
-                                    <h4 class="text-xs font-bold text-white">${item.judul}</h4>
-                                    <span class="text-[10px] text-slate-500">${waktuDinamis}</span>
-                                </div>
+                                <h4 class="text-xs font-bold text-white">${item.judul}</h4>
                                 <p class="text-xs text-slate-400 mt-1 leading-relaxed">${item.pesan}</p>
                             </div>
                         </div>
@@ -436,12 +413,11 @@
             if(containerMobile) containerMobile.innerHTML = htmlContent;
         }
 
-        // Fungsi Simulasi Tambah Info Realtime
+        // Fungsi Simulasi Tambah Info
         function tambahNotifDemo() {
             daftarNotifikasi.unshift({
                 judul: "Info Terbaru Realtime!",
                 pesan: "Ada pembaruan sistem database dan modul praktikum baru di halaman Modul Edukasi.",
-                timestamp: Date.now(), // Waktu sekarang (Baru saja)
                 icon: "fa-bell",
                 warna: "rose"
             });
@@ -449,7 +425,7 @@
             
             const badge = document.getElementById('notifBadge');
             if(badge) badge.style.display = 'block';
-            alert("Berhasil menambah info update baru secara realtime!");
+            alert("Berhasil menambah info update baru!");
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -472,11 +448,6 @@
             renderNotifikasi();
         });
 
-        // AUTO-UPDATE LIVE TIAP 1 MENIT (60000 ms) DI BACKGROUND
-        setInterval(function() {
-            renderNotifikasi();
-        }, 60000);
-
         function toggleNotifDropdown() {
             const dropdown = document.getElementById('notifDropdown');
             const badge = document.getElementById('notifBadge');
@@ -484,16 +455,12 @@
             dropdown.classList.toggle('hidden');
             if (!dropdown.classList.contains('hidden')) {
                 if(badge) badge.style.display = 'none';
-                renderNotifikasi();
             }
         }
 
         function toggleNotifDropdownMobile() {
             const dropdown = document.getElementById('notifDropdownMobile');
             dropdown.classList.toggle('hidden');
-            if (!dropdown.classList.contains('hidden')) {
-                renderNotifikasi();
-            }
         }
 
         window.addEventListener('click', function(e) {
