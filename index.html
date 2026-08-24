@@ -326,15 +326,15 @@
         </div>
     </footer>
 
-    <!-- TOAST NOTIFIKASI (Floating Sticky - Mengikuti scroll layar) -->
-    <div id="toastNotif" class="fixed bottom-6 right-6 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.8)] p-4 transform translate-y-20 opacity-0 transition-all duration-500 z-[9999] flex items-start pointer-events-auto">
-        <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse text-lg"></i>
-        <div class="flex-1">
-            <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
-            <p class="text-xs text-slate-400 mt-1">Cek foto-foto kalian di bagian gallery ya!</p>
-        </div>
-        <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none"><i class="fa-solid fa-xmark text-base"></i></button>
+    <!-- TOAST NOTIFIKASI (Letakkan tepat di baris paling bawah file, sebelum </html>) -->
+<div id="toastNotif" style="position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 2147483647 !important;" class="max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.9)] p-4 transform translate-y-20 opacity-0 transition-all duration-500 flex items-start pointer-events-auto">
+    <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse text-lg"></i>
+    <div class="flex-1">
+        <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
+        <p class="text-xs text-slate-400 mt-1">Cek foto-foto kalian di bagian gallery ya!</p>
     </div>
+    <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none"><i class="fa-solid fa-xmark text-base"></i></button>
+</div>
 
     <!-- SCRIPT -->
     <script>
