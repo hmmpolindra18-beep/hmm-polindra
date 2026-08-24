@@ -389,26 +389,31 @@
     </div>
 
     <!-- SCRIPT (BERSIH DARI CLICK INTERCEPTOR) -->
+    <!-- SCRIPT (BERSIH DARI CLICK INTERCEPTOR) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Eksekusi Scroll Restore Instan SEBELUM layar kebuka
-            const savedPosition = sessionStorage.getItem('scrollPosition');
             const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
+            const scrollBackLayanan = localStorage.getItem('scrollBackToLayanan');
+            const savedPosition = sessionStorage.getItem('scrollPosition');
 
+            // Cek dari mana user kembali, dan kembalikan posisinya secara presisi instan
             if (scrollBackJurnal === 'true') {
                 localStorage.removeItem('scrollBackToJurnal');
-                const jurnalSection = document.getElementById('jurnal');
-                if (jurnalSection) {
-                    jurnalSection.scrollIntoView({ behavior: 'instant' });
-                }
+                const target = document.getElementById('jurnal');
+                if (target) target.scrollIntoView({ behavior: 'instant' });
+            } else if (scrollBackLayanan === 'true') {
+                localStorage.removeItem('scrollBackToLayanan');
+                const target = document.getElementById('layanan');
+                if (target) target.scrollIntoView({ behavior: 'instant' });
             } else if (savedPosition !== null) {
                 window.scrollTo({ top: parseInt(savedPosition), behavior: 'instant' });
                 sessionStorage.removeItem('scrollPosition');
             }
+            
             renderNotifikasi();
         });
 
-        // Buka Tirai Loading secara normal
+        // Tampilkan loading screen normal saat masuk/refresh
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
@@ -417,9 +422,9 @@
         });
 
         let daftarNotifikasi = [
-            { judul: "Update Jurnal & Artikel", pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi untuk referensi Tugas Akhir.", icon: "fa-book-open-reader", warna: "indigo" },
-            { judul: "Dokumentasi Galeri", pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah ke Google Drive.", icon: "fa-images", warna: "blue" },
-            { judul: "HMM Store Ready", pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah bisa dipesan.", icon: "fa-store", warna: "amber" }
+            { judul: "Update Jurnal & Artikel", pesan: "Penambahan 12 database jurnal internasional & lokal terakreditasi.", icon: "fa-book-open-reader", warna: "indigo" },
+            { judul: "Dokumentasi Galeri", pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah.", icon: "fa-images", warna: "blue" },
+            { judul: "HMM Store Ready", pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah ready.", icon: "fa-store", warna: "amber" }
         ];
 
         function renderNotifikasi() {
@@ -446,7 +451,7 @@
         }
 
         function tambahNotifDemo() {
-            daftarNotifikasi.unshift({ judul: "Info Terbaru Realtime!", pesan: "Ada pembaruan sistem database dan modul praktikum baru di halaman Modul Edukasi.", icon: "fa-bell", warna: "rose" });
+            daftarNotifikasi.unshift({ judul: "Info Terbaru Realtime!", pesan: "Ada pembaruan sistem database dan modul praktikum baru.", icon: "fa-bell", warna: "rose" });
             renderNotifikasi();
             const badge = document.getElementById('notifBadge');
             if(badge) badge.style.display = 'block';
