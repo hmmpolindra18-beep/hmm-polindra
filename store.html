@@ -11,7 +11,7 @@
     
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #0f172a; }
         .font-heading { font-family: 'Rajdhani', sans-serif; }
         
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -23,7 +23,6 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        /* Animasi Slide-Up Loading Screen */
         #loading-screen {
             position: fixed;
             inset: 0;
@@ -157,7 +156,7 @@
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.classList.add('slide-up');
-            }, 1200); // Durasi loading diperpanjang (1.2 detik) agar animasi tirai berasa pas & mulus
+            }, 1200);
         });
     </script>
 </body>
