@@ -67,7 +67,6 @@
                     <a href="#layanan" class="hover:text-blue-400 transition-colors">Services</a>
                     <a href="#jurnal" class="hover:text-blue-400 transition-colors">Jurnal</a>
                     <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
-                    <!-- Simpan posisi scroll saat ke HMM Store -->
                     <a href="./store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                 </div>
 
@@ -231,7 +230,6 @@
                     <span class="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/30 uppercase tracking-widest inline-block mb-4">Academic Publikasi</span>
                     <h3 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Akses Publikasi Ilmiah</h3>
                     <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari mahasiswa serta dosen Teknik Mesin Polindra.</p>
-                    <!-- Tambah sessionStorage agar posisi scroll tersimpan saat pindah ke jurnal.html -->
                     <a href="./jurnal.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
                         <i class="fa-solid fa-book-open-reader mr-2"></i> Akses Jurnal Sekarang
                     </a>
@@ -328,26 +326,48 @@
         </div>
     </footer>
 
-    <!-- TOAST NOTIFIKASI (Menggunakan position: fixed agar otomatis mengambang & ikut ngikutin layar saat di-scroll) -->
-    <div id="toastNotif" class="fixed bottom-5 right-5 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_5px_25px_rgba(59,130,246,0.6)] p-4 transform translate-y-full opacity-0 transition-all duration-500 z-[150] flex items-start">
-        <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse"></i>
+    <!-- TOAST NOTIFIKASI (Floating Sticky - Mengikuti scroll layar) -->
+    <div id="toastNotif" class="fixed bottom-6 right-6 max-w-[280px] sm:max-w-xs w-full bg-slate-900 border-l-4 border-blue-500 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.8)] p-4 transform translate-y-20 opacity-0 transition-all duration-500 z-[9999] flex items-start pointer-events-auto">
+        <i class="fa-solid fa-bell text-blue-400 mt-1 mr-3 animate-pulse text-lg"></i>
         <div class="flex-1">
             <h4 class="text-sm font-bold text-slate-100">Info Terbaru! 📢</h4>
-            <p class="text-xs text-slate-400 mt-1">Cek foto-foto kalian dibagian gallery ya!</p>
+            <p class="text-xs text-slate-400 mt-1">Cek foto-foto kalian di bagian gallery ya!</p>
         </div>
-        <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="tutupNotif()" class="text-slate-500 hover:text-rose-400 transition-colors ml-3 focus:outline-none"><i class="fa-solid fa-xmark text-base"></i></button>
     </div>
 
     <!-- SCRIPT -->
     <script>
-        // Auto-Restore Posisi Scroll (Supaya pas kembali dari jurnal, store, dll posisi scroll tetep pas)
+        // Auto-Restore Posisi Scroll
         document.addEventListener("DOMContentLoaded", function() {
             const savedPosition = sessionStorage.getItem('scrollPosition');
             if (savedPosition !== null) {
                 window.scrollTo(0, parseInt(savedPosition));
                 sessionStorage.removeItem('scrollPosition');
             }
+
+            // Munculkan Toast Notifikasi setelah 2.5 detik
+            setTimeout(() => {
+                const toast = document.getElementById('toastNotif');
+                if(toast) {
+                    toast.classList.remove('translate-y-20', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                }
+            }, 2500);
         });
+
+        function tutupNotif() {
+            const toast = document.getElementById('toastNotif');
+            if(toast) {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }
+        }
+
+        // Auto-close setelah 11.5 detik kalau gak ditutup manual
+        setTimeout(() => { 
+            tutupNotif(); 
+        }, 11500);
 
         const btnMobileMenu = document.getElementById('btn-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -388,20 +408,6 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
-
-        // Toast Notifikasi Muncul Otomatis
-        setTimeout(() => {
-            const toast = document.getElementById('toastNotif');
-            toast.classList.remove('translate-y-full', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-        }, 2500);
-
-        function tutupNotif() {
-            const toast = document.getElementById('toastNotif');
-            toast.classList.remove('translate-y-0', 'opacity-100');
-            toast.classList.add('translate-y-full', 'opacity-0');
-        }
-        setTimeout(() => { tutupNotif(); }, 9000);
     </script>
 </body>
 </html>
