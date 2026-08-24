@@ -11,8 +11,11 @@
     
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .font-heading { font-family: 'Rajdhani', sans-serif; }
+        
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .gear-spin { animation: spin-slow 15s linear infinite; }
         
         .bg-pattern {
             background-color: #0f172a;
@@ -20,14 +23,39 @@
             background-size: 40px 40px; background-position: 0 0, 20px 20px; background-attachment: fixed;
         }
 
-        @keyframes pageSlideIn {
-            from { opacity: 0; transform: translateY(20px); }
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: #020617;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #loading-screen.slide-up {
+            transform: translateY(-100%);
+        }
+
+        @keyframes contentReveal {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-transition { animation: pageSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .page-reveal { animation: contentReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-transition">
+<body class="bg-pattern text-slate-300 min-h-screen flex flex-col justify-between page-reveal">
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
+            <i class="fa-solid fa-gear text-sky-500 text-7xl gear-spin absolute"></i>
+            <div class="w-16 h-16 border-4 border-sky-500/20 border-t-sky-500 rounded-full animate-spin"></div>
+        </div>
+        <h2 class="font-heading font-bold text-white text-3xl tracking-wider">MASTER SOFTWARE</h2>
+        <p class="text-xs text-sky-400 font-bold tracking-widest mt-2 uppercase animate-pulse">Menyiapkan Installer Teknik...</p>
+    </div>
 
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
@@ -39,7 +67,7 @@
                     </div>
                     <div>
                         <h1 class="font-heading font-bold text-xl text-white tracking-wider leading-tight">MASTER SOFTWARE</h1>
-                        <p class="text-[10px] text-sky-400 font-bold uppercase tracking-widest">HMM POLINDRA</p>
+                        <p class="text-[10px] text-sky-400 font-bold uppercase tracking-widest">Aplikasi Teknik Mesin</p>
                     </div>
                 </div>
                 <div>
@@ -52,46 +80,54 @@
     </nav>
 
     <!-- CONTENT -->
-    <main class="max-w-5xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
+    <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
         <div class="text-center mb-14">
-            <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/30 uppercase tracking-widest">Engineering Tools</span>
-            <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Pusat Download Installer CAD</h2>
-            <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Kumpulan master software teknik lengkap untuk menunjang perkuliahan praktikum mahasiswa Teknik Mesin.</p>
+            <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/20 uppercase tracking-widest">Pusat Download Installer</span>
+            <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Software Pendukung Praktikum</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Unduh software desain CAD, simulasi FEA, dan kontrol industri yang dibutuhkan untuk keperluan kuliah dan tugas akhir.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- SolidWorks -->
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 text-2xl font-bold"><i class="fa-solid fa-cube"></i></div>
-                        <span class="bg-sky-500/20 text-sky-300 text-xs font-bold px-2.5 py-1 rounded-full">3D Modeling</span>
+                        <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full">CAD / CAE</span>
+                        <i class="fa-solid fa-cube text-sky-400 text-2xl"></i>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold text-white mb-2">SolidWorks 2022</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Software desain 3D parametrik standar industri untuk perancangan mekanikal, simulasi, dan analisis tegangan.</p>
+                    <h3 class="font-heading text-xl font-bold text-white mb-3">SolidWorks Professional</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Software standar industri untuk permodelan 3D parametric design, sheet metal, dan analisis simulasi tegangan.</p>
                 </div>
-                <div>
-                    <a href="https://getintopc.com/softwares/solidworks-2022-free-download-6999973/" target="_blank" class="block text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-[0_0_15px_rgba(14,165,233,0.4)]">
-                        <i class="fa-solid fa-download mr-2"></i> Download SolidWorks
-                    </a>
-                </div>
+                <a href="https://drive.google.com" target="_blank" class="inline-flex items-center text-sm font-bold text-sky-400 hover:text-sky-300">
+                    Akses Link Download <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                </a>
             </div>
 
-            <!-- AutoCAD -->
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 text-2xl font-bold"><i class="fa-solid fa-pen-ruler"></i></div>
-                        <span class="bg-red-500/20 text-red-300 text-xs font-bold px-2.5 py-1 rounded-full">2D Drafting</span>
+                        <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full">2D & 3D Drafting</span>
+                        <i class="fa-solid fa-compass-drafting text-sky-400 text-2xl"></i>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold text-white mb-2">AutoCAD (2D & 3D Drafting)</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Aplikasi pembuat gambar teknik dan perancangan berbasis vektor yang wajib dikuasai anak teknik mesin.</p>
+                    <h3 class="font-heading text-xl font-bold text-white mb-3">AutoCAD Educational</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Aplikasi gambar teknik 2D dan permodelan denah mesin presisi tinggi.</p>
                 </div>
+                <a href="https://drive.google.com" target="_blank" class="inline-flex items-center text-sm font-bold text-sky-400 hover:text-sky-300">
+                    Akses Link Download <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
                 <div>
-                    <a href="https://drive.google.com/drive/folders/10IyHNYZKs-0bX1NyIQUcWNG3pQThCQy5?usp=drive_link" target="_blank" class="block text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-[0_0_15px_rgba(14,165,233,0.4)]">
-                        <i class="fa-solid fa-download mr-2"></i> Download File Installer
-                    </a>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full">Simulation</span>
+                        <i class="fa-solid fa-fire-flame-curved text-sky-400 text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-white mb-3">ANSYS Student Edition</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Software simulasi Computational Fluid Dynamics (CFD) dan perpindahan panas lanjutan.</p>
                 </div>
+                <a href="https://drive.google.com" target="_blank" class="inline-flex items-center text-sm font-bold text-sky-400 hover:text-sky-300">
+                    Akses Link Download <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </main>
@@ -99,5 +135,14 @@
     <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
         &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
     </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loading-screen');
+                if (loader) loader.classList.add('slide-up');
+            }, 300);
+        });
+    </script>
 </body>
 </html>
