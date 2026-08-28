@@ -26,39 +26,25 @@
         }
 
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 99999;
-            background-color: #020617;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(0);
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 99999; background-color: #020617;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transform: translateY(0); transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        #loading-screen.slide-up {
-            transform: translateY(-100%);
-        }
+        #loading-screen.slide-up { transform: translateY(-100%); }
 
         @keyframes contentReveal {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .page-reveal {
-            animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
+        .page-reveal { animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="bg-pattern text-slate-300">
 
-    <!-- LOADING SCREEN CURTAIN -->
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-blue-500 text-7xl gear-spin absolute"></i>
@@ -84,7 +70,6 @@
                         </div>
                     </div>
                     
-                    <!-- MENU UTAMA + IKON NOTIFIKASI BERDEKATAN -->
                     <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-slate-300">
                         <a href="#beranda" class="hover:text-blue-400 transition-colors">Home</a>
                         <a href="#tentang" class="hover:text-blue-400 transition-colors">About Us</a>
@@ -93,7 +78,6 @@
                         <a href="#galeri" class="hover:text-blue-400 transition-colors">Gallery</a>
                         <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-500 hover:text-amber-400 transition-colors font-bold"><i class="fa-solid fa-store mr-1"></i> HMM Store</a>
                         
-                        <!-- GARIS PEMBATAS KECIL -->
                         <div class="h-5 w-[1px] bg-slate-700"></div>
 
                         <!-- TOMBOL LONCENG NOTIFIKASI -->
@@ -103,7 +87,6 @@
                                 <span id="notifBadge" class="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
                             </button>
 
-                            <!-- DROPDOWN RIWAYAT NOTIFIKASI -->
                             <div id="notifDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-[200]">
                                 <div class="bg-slate-800 px-5 py-3.5 border-b border-slate-700 flex justify-between items-center">
                                     <h3 class="font-heading font-bold text-white text-base tracking-wide flex items-center gap-2">
@@ -174,6 +157,44 @@
             </div>
         </section>
 
+        <!-- FIRST MEET HIGHLIGHT BANNER (AKURAT DENGAN INFO TERBARU) -->
+        <section class="py-12 bg-slate-900/80 border-b border-slate-800 relative z-10 overflow-hidden">
+            <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-slate-800/90 via-slate-900/90 to-slate-800/90 p-8 md:p-10 rounded-3xl border-2 border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.2)] relative reveal">
+                    <div class="absolute top-4 right-4 bg-amber-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider animate-pulse flex items-center gap-1.5 shadow-md">
+                        <i class="fa-solid fa-bullhorn"></i> Event Highlight
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="w-24 h-24 md:w-32 md:h-32 bg-amber-500/10 rounded-2xl border border-amber-500/30 flex flex-col items-center justify-center text-amber-400 shrink-0 shadow-inner">
+                            <i class="fa-solid fa-calendar-days text-3xl md:text-4xl mb-1"></i>
+                            <span class="text-xs font-bold uppercase tracking-widest text-slate-300">Agenda</span>
+                        </div>
+                        
+                        <div class="flex-1 text-center md:text-left">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Himpunan Mahasiswa Mesin Polindra</span>
+                            <h3 class="font-heading text-2xl md:text-4xl font-bold text-white mt-1 mb-3">FIRST MEET HMM 2026</h3>
+                            <p class="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">
+                                Halo warga Teknik Mesin! Yuk hadiri acara <strong>First Meet HMM Polindra</strong>. Agenda utama meliputi pengenalan aplikasi & sharing <strong>Edlink</strong>, penjelasan <strong>Kontrak Kuliah</strong> (pembagian nilai rata), sharing seputar <strong>Dosen</strong>, serta pengenalan materi <strong>Gambar Teknik</strong>.
+                            </p>
+                            
+                            <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs md:text-sm text-slate-300 font-medium">
+                                <div class="bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-amber-400"></i> Pukul 15:30 WIB (Setengah 4 Sore)
+                                </div>
+                                <div class="bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-location-dot text-amber-400"></i> Samping GSC / Depan Direktorat Polindra
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION TENTANG -->
         <section id="tentang" class="py-24 relative z-10 overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,17 +203,17 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center reveal">
-                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 group">
                         <i class="fa-solid fa-users text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
                         <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">480+</h3>
                         <p class="text-slate-400 mt-2 font-medium tracking-wide">Mahasiswa Aktif</p>
                     </div>
-                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 group">
                         <i class="fa-solid fa-car-side text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
                         <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">2</h3>
                         <p class="text-slate-400 mt-2 font-medium tracking-wide">Tim Riset Otomotif</p>
                     </div>
-                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] group">
+                    <div class="bg-slate-800/60 backdrop-blur-md p-8 rounded-2xl border border-slate-700 shadow-xl hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-500 hover:-translate-y-2 group">
                         <i class="fa-solid fa-trophy text-5xl text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
                         <h3 class="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">2+</h3>
                         <p class="text-slate-400 mt-2 font-medium tracking-wide">Penghargaan Nasional</p>
@@ -205,11 +226,11 @@
         <section id="layanan" class="py-24 bg-slate-900/50 border-y border-slate-800/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-white border-b-2 border-blue-500 inline-block pb-3 tracking-wider">SERVICES & INFORMATION</h2>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-white border-b-2 border-blue-500 inline-block pb-3 tracking-wider">SERVICES & DIVISIONS</h2>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-purple-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-purple-500 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
                         <div>
                             <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-purple-500/20 transition-colors">
                                 <i class="fa-solid fa-bullhorn text-2xl text-purple-400"></i>
@@ -217,14 +238,12 @@
                             <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Suara Mesin</h3>
                             <p class="text-slate-400 text-sm mb-6 leading-relaxed">Layanan aspirasi, kritik, dan saran untuk kemajuan himpunan secara anonim.</p>
                         </div>
-                        <div>
-                            <a href="https://forms.gle/uxnCgUCRcDYK7LQb9" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 text-sm flex items-center">
-                                Sampaikan Aspirasi <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
+                        <a href="https://forms.gle/uxnCgUCRcDYK7LQb9" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 text-sm flex items-center">
+                            Sampaikan Aspirasi <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                     
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-amber-500 hover:shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group flex flex-col justify-between">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-amber-500 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group flex flex-col justify-between">
                         <div class="absolute -right-4 -top-4 w-16 h-16 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition-colors"></div>
                         <div>
                             <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center mb-5">
@@ -233,14 +252,12 @@
                             <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">HMM Store</h3>
                             <p class="text-slate-400 text-sm mb-6 leading-relaxed">Katalog resmi untuk pemesanan merchandise HMM.</p>
                         </div>
-                        <div>
-                            <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
-                                Kunjungi Store <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
+                        <a href="store.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-amber-400 font-semibold hover:text-amber-300 text-sm flex items-center">
+                            Kunjungi Store <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
 
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-500 hover:shadow-[0_0_25px_rgba(14,165,233,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-500 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
                         <div>
                             <div class="w-14 h-14 bg-sky-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-sky-500/20 transition-colors">
                                 <i class="fa-solid fa-download text-2xl text-sky-400"></i>
@@ -248,26 +265,22 @@
                             <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Master Software</h3>
                             <p class="text-slate-400 text-sm mb-6 leading-relaxed">Akses download installer SolidWorks, AutoCAD, dan software teknik lainnya.</p>
                         </div>
-                        <div>
-                            <a href="software.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
-                                Buka Software <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
+                        <a href="software.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-sky-400 font-semibold hover:text-sky-300 text-sm flex items-center">
+                            Buka Software <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
 
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-emerald-500 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
                         <div>
                             <div class="w-14 h-14 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-emerald-500/20 transition-colors">
                                 <i class="fa-solid fa-book text-2xl text-emerald-400"></i>
                             </div>
                             <h3 class="font-heading text-xl font-bold text-white mb-3 tracking-wide">Modul Edukasi</h3>
-                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan modul materi, bank soal dan video tutorial desain 2D/3D.</p>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kumpulan modul elemen mesin dan video tutorial desain 3D (CAD).</p>
                         </div>
-                        <div>
-                            <a href="modul.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
-                                Mulai Belajar <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
+                        <a href="modul.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="text-emerald-400 font-semibold hover:text-emerald-300 text-sm flex items-center">
+                            Mulai Belajar <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -290,7 +303,7 @@
                     <div class="w-full md:w-2/3 text-center md:text-left">
                         <span class="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/30 uppercase tracking-widest inline-block mb-4">Academic Publikasi</span>
                         <h3 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Akses Publikasi Ilmiah</h3>
-                        <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari sumber terpecaya.</p>
+                        <p class="text-slate-400 mb-8 leading-relaxed md:text-lg">Jelajahi berbagai karya tulis ilmiah, jurnal teknik mesin, dan artikel penelitian terbaru dari mahasiswa serta dosen Teknik Mesin Polindra.</p>
                         <a href="jurnal.html" onclick="sessionStorage.setItem('scrollPosition', window.scrollY);" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1">
                             <i class="fa-solid fa-book-open-reader mr-2"></i> Akses Jurnal Sekarang
                         </a>
@@ -307,28 +320,28 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 reveal">
-                    <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg h-64 bg-slate-900">
                         <img src="tm.jpeg" alt="Technical Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                             <span class="text-white font-bold text-lg drop-shadow-md">Technical Meeting</span>
                             <span class="text-blue-300 text-xs">Persiapan Maba 2026</span>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg h-64 bg-slate-900">
                         <img src="osprod.jpeg" alt="OSPROD" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                             <span class="text-white font-bold text-lg drop-shadow-md">OSPROD 2026</span>
                             <span class="text-blue-300 text-xs">Orientasi Prodi Mesin</span>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg h-64 bg-slate-900">
                         <img src="wiragora.jpeg" alt="Wiragora EV" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                             <span class="text-white font-bold text-lg drop-shadow-md">Wiragora EV</span>
                             <span class="text-blue-300 text-xs">Tim Mobil Listrik</span>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl cursor-pointer shadow-lg h-64 bg-slate-900">
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg h-64 bg-slate-900">
                         <img src="gokart.jpeg" alt="Gokart Team" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 border-b-4 border-blue-500">
                             <span class="text-white font-bold text-lg drop-shadow-md">Gokart Team</span>
@@ -369,7 +382,7 @@
                     <h3 class="font-heading font-bold text-white text-lg mb-6 border-b border-slate-700 inline-block pb-2 tracking-wide">Hubungi Kami</h3>
                     <ul class="space-y-4 text-sm text-slate-400">
                         <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-4 text-blue-500 text-lg w-4 text-center"></i> <span>Kampus Politeknik Negeri Indramayu<br>Jl. Raya Lohbener Lama No.8</span></li>
-                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-4 text-blue-500 text-lg w-4 text-center"></i> <a href="mailto:himpunanmahasiswamesinpolindra@gmail.com" class="hover:text-blue-400 transition-colors">himpunanmahasiswamesinpolindra@gmail.com</a></li>
+                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-4 text-blue-500 text-lg w-4 text-center"></i> <a href="mailto:himpunanmahasiswamesinpolindra@gmail.com" class="hover:text-blue-400 transition-colors">hmmpolindra@gmail.com</a></li>
                     </ul>
                 </div>
                 
@@ -388,14 +401,13 @@
         </footer>
     </div>
 
-    <!-- SCRIPT (BERSIH DARI CLICK INTERCEPTOR) -->
+    <!-- SCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const scrollBackJurnal = localStorage.getItem('scrollBackToJurnal');
             const scrollBackLayanan = localStorage.getItem('scrollBackToLayanan');
             const savedPosition = sessionStorage.getItem('scrollPosition');
 
-            // Cek dari mana user kembali, dan kembalikan posisinya secara presisi instan
             if (scrollBackJurnal === 'true') {
                 localStorage.removeItem('scrollBackToJurnal');
                 const target = document.getElementById('jurnal');
@@ -408,11 +420,9 @@
                 window.scrollTo({ top: parseInt(savedPosition), behavior: 'instant' });
                 sessionStorage.removeItem('scrollPosition');
             }
-            
             renderNotifikasi();
         });
 
-        // Tampilkan loading screen normal saat masuk/refresh
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
@@ -421,9 +431,9 @@
         });
 
         let daftarNotifikasi = [
-            { judul: "Update Jurnal & Artikel", pesan: "Penambahan 6 database jurnal internasional & lokal terakreditasi.", icon: "fa-book-open-reader", warna: "indigo" },
-            { judul: "Dokumentasi Galeri", pesan: "Dokumentasi kegiatan Technical Meeting & OSPROD 2026 telah diunggah.", icon: "fa-images", warna: "blue" },
-            { judul: "HMM Store Ready", pesan: "Katalog merchandise resmi atribut himpunan gelombang terbaru sudah ready.", icon: "fa-store", warna: "amber" }
+            { judul: "First Meet HMM 2026", pesan: "Pukul 15:30 WIB di Samping GSC/Depan Direktorat. Bahas Edlink, Kontrak Kuliah & Gamtek.", icon: "fa-bullhorn", warna: "amber" },
+            { judul: "Update Jurnal & Artikel", pesan: "Penambahan database jurnal dan info Guest Lecture bersama Tunghai University Taiwan.", icon: "fa-book-open-reader", warna: "indigo" },
+            { judul: "HMM Store Ready", pesan: "Paket Gelang & Stiker eksklusif sudah bisa dipesan via WhatsApp.", icon: "fa-store", warna: "amber" }
         ];
 
         function renderNotifikasi() {
