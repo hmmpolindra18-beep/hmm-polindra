@@ -77,165 +77,167 @@
 
         <!-- CONTENT -->
          <main class="max-w-7xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
-        <div class="text-center mb-14">
-            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20 uppercase tracking-widest">Pusat Referensi Ilmiah</span>
-            <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Publikasi Teknik Mesin</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Kumpulan artikel dan jurnal penelitian seputar desain mekanikal, manufaktur CNC, material komposit, hingga sistem otomasi industri untuk referensi tugas akhir.</p>
-        </div>
-
-        <!-- GRID ARTIKEL -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jurnal-container">
-            
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Analisis FEA</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Metode Elemen Hingga Menggunakan Solidworks pada Desain Pelek</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Simulasi tegangan von mises stress statis dan factor of safety pada pelek motor berbahan aluminium alloy menggunakan software SolidWorks.</p>
-                </div>
-                <div>
-                    <a href="https://publikasi.mercubuana.ac.id/index.php/jtm/article/view/16676" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
+            <div class="text-center mb-10">
+                <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20 uppercase tracking-widest">Pusat Referensi Ilmiah</span>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Publikasi Teknik Mesin</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Kumpulan artikel dan jurnal penelitian seputar desain mekanikal, manufaktur CNC, material komposit, hingga sistem otomasi industri untuk referensi tugas akhir.</p>
             </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Proses Manufaktur</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Rancang Bangun Mesin CNC Laser Cutting 3 Axis</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penelitian pembuatan mesin CNC laser cutting ekonomis berbasis mikrokontroler Arduino Uno untuk praktikum pembelajaran mahasiswa Teknik Mesin.</p>
-                </div>
-                <div>
-                    <a href="https://jurnal.poliupg.ac.id/index.php/Sinergi/article/view/2231" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
+            <!-- SEARCH BAR JURNAL -->
+            <div class="max-w-md mx-auto relative mb-12">
+                <input type="text" id="searchInput" onkeyup="searchJurnal()" placeholder="Cari judul jurnal atau topik (cth: FEA, CNC, Komposit)..." class="w-full bg-slate-800/80 border border-slate-700 text-white px-4 py-3.5 pl-12 rounded-2xl focus:outline-none focus:border-indigo-500 transition-all shadow-inner text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-base"></i>
             </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Material Teknik</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+            <!-- GRID ARTIKEL -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jurnal-container">
+                
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Analisis FEA</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Metode Elemen Hingga Menggunakan Solidworks pada Desain Pelek</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Simulasi tegangan von mises stress statis dan factor of safety pada pelek motor berbahan aluminium alloy menggunakan software SolidWorks.</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Studi Sifat Mekanik Komposit Polimer Serat Bambu Struktur Berlapis</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Pengujian kekuatan tarik, impak, dan tekan pada material komposit berbahan dasar serat alam bambu dan resin polimer dengan metode quasi-isotropic.</p>
+                    <div>
+                        <a href="https://publikasi.mercubuana.ac.id/index.php/jtm/article/view/16676" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://jurnal.poliupg.ac.id/index.php/Sinergi/article/view/3808" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Maintenance</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Proses Manufaktur</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Rancang Bangun Mesin CNC Laser Cutting 3 Axis</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penelitian pembuatan mesin CNC laser cutting ekonomis berbasis mikrokontroler Arduino Uno untuk praktikum pembelajaran mahasiswa Teknik Mesin.</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Penerapan Perawatan Metode ISMO Pada Turbin Vertical Francis</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penjadwalan inspeksi dan overhoul pada turbin hidrolik pembangkit daya (PLTA) dengan metode Inspection, Small, Medium, Overhoul (ISMO).</p>
+                    <div>
+                        <a href="https://jurnal.poliupg.ac.id/index.php/Sinergi/article/view/2231" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://journal.ubb.ac.id/index.php/machine/article/view/1916" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Desain & Mekanika</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Material Teknik</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Studi Sifat Mekanik Komposit Polimer Serat Bambu Struktur Berlapis</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Pengujian kekuatan tarik, impak, dan tekan pada material komposit berbahan dasar serat alam bambu dan resin polimer dengan metode quasi-isotropic.</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Analisis Kekuatan Rangka Mesin Perontok Padi SolidWorks 2019</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Analisis distribusi tegangan dan deformasi statis pada rangka berbahan ASTM A36 Steel untuk memastikan keamanan desain sebelum fabrikasi.</p>
+                    <div>
+                        <a href="https://jurnal.poliupg.ac.id/index.php/Sinergi/article/view/3808" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://ejournal.up45.ac.id/index.php/Jurnal_ENGINE/article/view/1201" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Maintenance</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Maintenance</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Penerapan Perawatan Metode ISMO Pada Turbin Vertical Francis</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penjadwalan inspeksi dan overhoul pada turbin hidrolik pembangkit daya (PLTA) dengan metode Inspection, Small, Medium, Overhoul (ISMO).</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Penerapan Preventive Maintenance Pada Mesin CNC Forming</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kajian tindakan pemeliharaan pencegahan (preventive maintenance) secara rutin guna menghindari downtime pada produksi komponen pegas (spring).</p>
+                    <div>
+                        <a href="https://journal.ubb.ac.id/index.php/machine/article/view/1916" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://jurnal.politap.ac.id/index.php/jtm/article/view/1914" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <!-- ========================= ITEM HIDDEN (LOAD MORE) ========================= -->
-            
-            <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Material Maju</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Desain & Mekanika</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Analisis Kekuatan Rangka Mesin Perontok Padi SolidWorks 2019</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Analisis distribusi tegangan dan deformasi statis pada rangka berbahan ASTM A36 Steel untuk memastikan keamanan desain sebelum fabrikasi.</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Optimasi Parameter Komposisi Komposit Serat Kaca & Karbon</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penggunaan metode Taguchi untuk menganalisa kombinasi parameter campuran glass fiber dan carbon yang menghasilkan kekuatan tarik optimum bodi EV.</p>
+                    <div>
+                        <a href="https://ejournal.up45.ac.id/index.php/Jurnal_ENGINE/article/view/1201" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="http://jurnal.polinema.ac.id/index.php/j-meeg/article/view/9725" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Proses Produksi</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <div class="jurnal-card bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Maintenance</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Penerapan Preventive Maintenance Pada Mesin CNC Forming</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Kajian tindakan pemeliharaan pencegahan (preventive maintenance) secara rutin guna menghindari downtime pada produksi komponen pegas (spring).</p>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Pengaruh Parameter Pemotongan Terhadap Kekasaran Permukaan Baja Karbon Rendah</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Analisis kecepatan putar spindel (RPM), feed rate, dan kedalaman potong (depth of cut) terhadap tingkat kekasaran permukaan benda kerja pada mesin bubut.</p>
+                    <div>
+                        <a href="https://jurnal.politap.ac.id/index.php/jtm/article/view/1914" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://jptm.ejournal.unsri.ac.id/index.php/jptm/article/download/132/68" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
-                        Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
 
-            <!-- TOPIK PENGGANTI 1: Analisis Getaran Mesin (Jurnal Rotasi Undip - Aktif) -->
-            <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Dinamika & Getaran</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                <!-- ========================= ITEM HIDDEN (LOAD MORE) ========================= -->
+                
+                <div class="jurnal-card hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Material Maju</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Optimasi Parameter Komposisi Komposit Serat Kaca & Karbon</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Penggunaan metode Taguchi untuk menganalisa kombinasi parameter campuran glass fiber dan carbon yang menghasilkan kekuatan tarik optimum bodi EV.</p>
                     </div>
-            <div class="hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Mekatronika</span>
-                        <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
-                    </div>
-                    <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Rancang Bangun Mesin CNC Milling Mini 3 Axis Nema 34</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Proses desain, perakitan perangkat keras kelistrikan, serta pengujian sistem interpolasi board Mach 3 pada mesin frais skala lab.</p>
-                </div>
-                <div>
-                    <a href="https://journal.pubmedia.id/index.php/jme/article/view/3131" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">Download PDF</a>
+                    <div>
+                        <a href="http://jurnal.polinema.ac.id/index.php/j-meeg/article/view/9725" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
+
+                <div class="jurnal-card hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Proses Produksi</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Pengaruh Parameter Pemotongan Terhadap Kekasaran Permukaan Baja Karbon Rendah</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Analisis kecepatan putar spindel (RPM), feed rate, dan kedalaman potong (depth of cut) terhadap tingkat kekasaran permukaan benda kerja pada mesin bubut.</p>
+                    </div>
+                    <div>
+                        <a href="https://jptm.ejournal.unsri.ac.id/index.php/jptm/article/download/132/68" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="jurnal-card hidden-jurnal hidden bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 hover:border-indigo-500 shadow-xl transition-all duration-300 hover:-translate-y-2 group flex-col justify-between opacity-0">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full border border-indigo-500/20">Mekatronika</span>
+                            <i class="fa-solid fa-file-pdf text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Rancang Bangun Mesin CNC Milling Mini 3 Axis Nema 34</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Proses desain, perakitan perangkat keras kelistrikan, serta pengujian sistem interpolasi board Mach 3 pada mesin frais skala lab.</p>
+                    </div>
+                    <div>
+                        <a href="https://journal.pubmedia.id/index.php/jme/article/view/3131" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-400 hover:text-indigo-300">
+                            Baca Jurnal Lengkap <i class="fa-solid fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Tombol Load More -->
@@ -273,6 +275,22 @@
             });
             const btnContainer = document.getElementById('btn-load-more-container');
             if(btnContainer) btnContainer.style.display = 'none';
+        }
+
+        function searchJurnal() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('jurnal-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                let desc = cards[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
         }
     </script>
 </body>
