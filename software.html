@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Software - HMM POLINDRA</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome buat Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -39,6 +42,7 @@
 </head>
 <body class="bg-pattern text-slate-300">
 
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
             <i class="fa-solid fa-gear text-sky-500 text-7xl gear-spin absolute"></i>
@@ -48,7 +52,10 @@
         <p class="text-xs text-sky-400 font-bold tracking-widest mt-2 uppercase animate-pulse">Menyiapkan Installer Teknik...</p>
     </div>
 
+    <!-- WRAPPER KONTEN UTAMA -->
     <div class="page-reveal min-h-screen flex flex-col justify-between">
+        
+        <!-- NAVBAR -->
         <nav class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-slate-700/50 z-[110]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
@@ -70,17 +77,25 @@
             </div>
         </nav>
 
+        <!-- KONTEN UTAMA -->
         <main class="max-w-5xl mx-auto px-4 pt-32 pb-20 w-full flex-1">
-            <div class="text-center mb-14">
+            <div class="text-center mb-10">
                 <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/20 uppercase tracking-widest">Pusat Download Installer</span>
                 <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mt-4 mb-3 tracking-wide">Software Pendukung Praktikum</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Unduh software desain CAD dan pemodelan teknik utama yang dibutuhkan untuk keperluan kuliah dan tugas akhir.</p>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Unduh software desain CAD, pemodelan teknik, hingga simulasi mesin CNC yang dibutuhkan untuk keperluan kuliah dan tugas akhir.</p>
             </div>
 
-            <!-- Grid 2 Kolom (SolidWorks & AutoCAD) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- SEARCH BAR -->
+            <div class="max-w-md mx-auto relative mb-12">
+                <input type="text" id="searchInput" onkeyup="searchSoftware()" placeholder="Cari software (cth: SolidWorks, CNC, AutoCAD)..." class="w-full bg-slate-800/80 border border-slate-700 text-white px-4 py-3.5 pl-12 rounded-2xl focus:outline-none focus:border-sky-500 transition-all shadow-inner text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400 text-base"></i>
+            </div>
+
+            <!-- GRID SOFTWARE -->
+            <div id="softwareGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
                 <!-- SolidWorks -->
-                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
+                <div class="software-card bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
                             <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3.5 py-1.5 rounded-full">CAD / CAE</span>
@@ -95,7 +110,7 @@
                 </div>
 
                 <!-- AutoCAD -->
-                <div class="bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
+                <div class="software-card bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
                             <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3.5 py-1.5 rounded-full">2D & 3D Drafting</span>
@@ -108,15 +123,32 @@
                         <i class="fa-solid fa-download mr-2"></i> Download AutoCAD
                     </a>
                 </div>
+
+                <!-- Simulasi CNC (BARU DITAMBAHKAN) -->
+                <div class="software-card md:col-span-2 bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-sky-500 shadow-xl transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full">Simulasi & Manufaktur</span>
+                            <i class="fa-solid fa-gears text-emerald-400 text-3xl"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3">Aplikasi Simulasi CNC</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Software simulasi pemrograman G-Code dan operasional mesin CNC Milling / Turning untuk menunjang kegiatan praktikum manufaktur.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1z-H43wisLxp7Qi_0-P2FABkOrERN1b-K" target="_blank" class="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Download Simulasi CNC
+                    </a>
+                </div>
+
             </div>
         </main>
 
+        <!-- FOOTER -->
         <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
             &copy; 2026 HIMPUNAN MAHASISWA MESIN POLINDRA. All rights reserved.
         </footer>
     </div>
 
-    <!-- SCRIPT NORMAL -->
+    <!-- SCRIPT -->
     <script>
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
@@ -125,6 +157,22 @@
                 if (loader) loader.classList.add('slide-up');
             }, 600);
         });
+
+        function searchSoftware() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('software-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                let desc = cards[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
     </script>
 </body>
 </html>
